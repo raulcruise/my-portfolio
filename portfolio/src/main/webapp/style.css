@@ -4,6 +4,21 @@
   width: 650px;
 }
 
-#greeting-container {
+#fun-fact-container {
   margin-top: 20px;
+}
+
+body {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: lightgray;
+}
+
+h1 {
+    background-color: mediumseagreen;
+}
+
+img.center { /* Centered images are fit to the restraints of the other elements*/
+    width: 650px;
+    height: 366px;
+
 }
