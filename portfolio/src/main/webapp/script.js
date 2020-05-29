@@ -25,5 +25,5 @@ function addRandomFact() {
   // Add it to the page.
   const funFactContainer = document.getElementById('fun-fact-container');
   funFactContainer.innerText = funFact;
-  funFactContainer.style.backgroundColor = "dodgerblue";
+  funFactContainer.style.backgroundColor = "whitesmoke";
 }
