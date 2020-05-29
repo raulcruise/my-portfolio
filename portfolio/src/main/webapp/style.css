@@ -6,6 +6,10 @@
 
 #fun-fact-container {
   margin-top: 20px;
+  line-height: 200%;
+  width: 50%;
+  text-align: center;
+  color: #292929;
 }
 
 body {
@@ -19,7 +23,7 @@ body {
 img.center { /* Centered images are fit to the restraints of the other elements*/
     width: 650px;
     height: 366px;
-
+    border: 10px outset tomato;
 }
 
 .topbar {
@@ -45,4 +49,16 @@ img.center { /* Centered images are fit to the restraints of the other elements*
     top: 8px;
     right: 25px;
     position: fixed;
+}
+
+.fact-btn {
+    background-color: tomato;
+    border: none;
+    color: whitesmoke;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 75px;
+    height: 25px;
 }
