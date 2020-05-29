@@ -10,13 +10,10 @@
 
 body {
     margin: 0;
-    margin-left:0;
+    margin-left: 0;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    background-color: lightgray;
-}
-
-h1 {
-    background-color: mediumseagreen;
+    color: whitesmoke;
+    background-color: #292929;
 }
 
 img.center { /* Centered images are fit to the restraints of the other elements*/
@@ -26,9 +23,10 @@ img.center { /* Centered images are fit to the restraints of the other elements*
 }
 
 .topbar {
-    background-color: mediumseagreen;
+    background-color: whitesmoke;
     height: 40px;
-    width:100%;
+    width: 100%;
+    color: #292929;
 }
 
 .topbar ul {
