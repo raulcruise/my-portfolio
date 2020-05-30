@@ -12,6 +12,10 @@
   color: #292929;
 }
 
+.abouttitle {
+  border-bottom:3px solid whitesmoke;
+}
+
 body {
   margin: 0;
   margin-left: 0;
@@ -43,10 +47,17 @@ img.center { /* Centered images are fit to the restraints of the other elements*
   font-size: 20px;
 }
 
-.logo img {
+.logo1 img {
   width: 25px;
   top: 8px;
   right: 25px;
+  position: fixed;
+}
+
+.logo2 img {
+  width: 25px;
+  top: 8px;
+  right: 60px;
   position: fixed;
 }
 
