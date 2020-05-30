@@ -4,7 +4,7 @@
   width: 650px;
 }
 
-#fun-fact-container {
+#funfactcontainer {
   margin-top: 20px;
   line-height: 200%;
   width: 50%;
@@ -51,7 +51,7 @@ img.center { /* Centered images are fit to the restraints of the other elements*
     position: fixed;
 }
 
-.fact-btn {
+.factbtn {
     background-color: tomato;
     border: none;
     color: whitesmoke;
