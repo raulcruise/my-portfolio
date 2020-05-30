@@ -1,74 +1,74 @@
+.abouttitle {
+  border-bottom:3px solid whitesmoke;
+}
+
+body {
+  background-color: #292929;
+  color: whitesmoke;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin: 0;
+  margin-left: 0;
+}
+
 #content {
   margin-left: auto;
   margin-right: auto;
   width: 650px;
 }
 
-#funfactcontainer {
-  margin-top: 20px;
-  line-height: 200%;
-  width: 50%;
-  text-align: center;
-  color: #292929;
-}
-
-.abouttitle {
-  border-bottom:3px solid whitesmoke;
-}
-
-body {
-  margin: 0;
-  margin-left: 0;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+.factbtn {
+  background-color: tomato;
+  border: none;
   color: whitesmoke;
-  background-color: #292929;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  height: 25px;
+  margin: 4px 2px;
+  width: 75px;
+}
+
+#funfactcontainer {
+  color: #292929;
+  line-height: 200%;
+  margin-top: 20px;
+  text-align: center;
+  width: 50%;
 }
 
 img.center { /* Centered images are fit to the restraints of the other elements*/
-  width: 650px;
-  height: 366px;
   border: 10px outset tomato;
+  height: 366px;
+  width: 650px;
+}
+
+.logo1 img {
+  position: fixed;
+  right: 25px;
+  top: 8px;
+  width: 25px;
+}
+
+.logo2 img {
+  position: fixed;
+  right: 60px;
+  top: 8px;
+  width: 25px;
 }
 
 .topbar {
   background-color: whitesmoke;
+  color: #292929;
   height: 40px;
   width: 100%;
-  color: #292929;
+}
+
+.topbar li {
+  font-size: 20px;
+  line-height: 8px;
 }
 
 .topbar ul {
   display: inline-flex;
   list-style: none;
-}
-
-.topbar li {
-  line-height: 8px;
-  font-size: 20px;
-}
-
-.logo1 img {
-  width: 25px;
-  top: 8px;
-  right: 25px;
-  position: fixed;
-}
-
-.logo2 img {
-  width: 25px;
-  top: 8px;
-  right: 60px;
-  position: fixed;
-}
-
-.factbtn {
-  background-color: tomato;
-  border: none;
-  color: whitesmoke;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  width: 75px;
-  height: 25px;
 }
