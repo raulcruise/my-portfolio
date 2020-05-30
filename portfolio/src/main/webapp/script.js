@@ -16,8 +16,14 @@
  * Adds a random fun fact to the page.
  */
 function addRandomFact() {
-  const funFacts =
-      ["I've built 8 computers so far!", 'I interned at Google last summer.', 'I spent my last summer in New York City.', 'I speak Spanish.'];
+  const funFacts = [
+    "I've built 8 computers so far!",
+    "I interned at Google last summer.",
+    "I spent my last summer in New York City.",
+    "I speak Spanish.",
+    "I love brocolli.",
+    "I can solve a Rubik's Cube."
+  ];
 
   // Pick a random greeting.
   let funFact = funFacts[Math.floor(Math.random() * funFacts.length)];
