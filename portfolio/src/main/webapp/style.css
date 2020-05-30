@@ -13,52 +13,51 @@
 }
 
 body {
-    margin: 0;
-    margin-left: 0;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    color: whitesmoke;
-    background-color: #292929;
+  margin: 0;
+  margin-left: 0;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: whitesmoke;
+  background-color: #292929;
 }
 
 img.center { /* Centered images are fit to the restraints of the other elements*/
-    width: 650px;
-    height: 366px;
-    border: 10px outset tomato;
+  width: 650px;
+  height: 366px;
+  border: 10px outset tomato;
 }
 
 .topbar {
-    background-color: whitesmoke;
-    height: 40px;
-    width: 100%;
-    color: #292929;
+  background-color: whitesmoke;
+  height: 40px;
+  width: 100%;
+  color: #292929;
 }
 
 .topbar ul {
-    display: inline-flex;
-    list-style: none;
+  display: inline-flex;
+  list-style: none;
 }
 
 .topbar li {
-    line-height: 8px;
-    font-size: 20px;
-
+  line-height: 8px;
+  font-size: 20px;
 }
 
 .logo img {
-    width: 25px;
-    top: 8px;
-    right: 25px;
-    position: fixed;
+  width: 25px;
+  top: 8px;
+  right: 25px;
+  position: fixed;
 }
 
 .factbtn {
-    background-color: tomato;
-    border: none;
-    color: whitesmoke;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    width: 75px;
-    height: 25px;
+  background-color: tomato;
+  border: none;
+  color: whitesmoke;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 75px;
+  height: 25px;
 }
