@@ -20,10 +20,13 @@ function addRandomFact() {
       ["I've built 8 computers so far!", 'I interned at Google last summer.', 'I spent my last summer in New York City.', 'I speak Spanish.'];
 
   // Pick a random greeting.
-  const funFact = funFacts[Math.floor(Math.random() * funFacts.length)];
+  let funFact = funFacts[Math.floor(Math.random() * funFacts.length)];
 
   // Add it to the page.
-  const funFactContainer = document.getElementById('fun-fact-container');
+  const funFactContainer = document.getElementById('funfactcontainer');
+  while (funFactContainer.innerText == funFact) {
+    funFact = funFacts[Math.floor(Math.random() * funFacts.length)];
+  }
   funFactContainer.innerText = funFact;
   funFactContainer.style.backgroundColor = "whitesmoke";
 }
