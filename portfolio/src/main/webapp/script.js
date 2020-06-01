@@ -21,7 +21,7 @@ function addRandomFact() {
     "I interned at Google last summer.",
     "I spent my last summer in New York City.",
     "I speak Spanish.",
-    "I love brocolli.",
+    "I love broccoli.",
     "I can solve a Rubik's Cube."
   ];
 
@@ -29,7 +29,7 @@ function addRandomFact() {
   let funFact = funFacts[Math.floor(Math.random() * funFacts.length)];
 
   // Add it to the page.
-  const funFactContainer = document.getElementById('funfactcontainer');
+  const funFactContainer = document.getElementById('fun-fact-container');
   while (funFactContainer.innerText == funFact) {
     funFact = funFacts[Math.floor(Math.random() * funFacts.length)];
   }
