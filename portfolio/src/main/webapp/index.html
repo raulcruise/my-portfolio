@@ -2,17 +2,51 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>Raul's Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
   <body>
+    <div class="top-bar">
+      <ul>
+        <li>Raul Cruz</li>
+        <li class="logo1">
+          <a href="https://github.com/raulcruise" target="_blank">
+            <img src="images/github.png" alt="GitHub logo">
+          </a>
+        </li>
+        <li class="logo2">
+          <a href="https://www.linkedin.com/in/raulcruise/" target="_blank">
+            <img src="images/linkedin.png" alt="LinkedIn logo">
+          </a>
+        </li>
+      </ul>
+    </div>
     <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+      <h1 class="about-title">About Me</h1>
+      <h2 class="section-title">Background Information</h2>
+      <p>
+        I'm a rising junior at California State Universtity, Fullerton.
+        My interest in computers began in middle school but I've only
+        begun coding recently when I took an online class the summer
+        before I began college.
+      </p>
+      <h2 class="section-title">Computer Building</h2>
+      <p>
+        Recently I have been building many of my friends' gaming computers
+        for them. To me, it's almost like putting together a huge puzzle
+        except I know where each piece has to go. Yet that doesn't take
+        away any satisfaction from seeing the end result. I always know
+        roughly how the computer will look but I always love seeing the
+        result that has come out of my work.
+      </p>
+      <h3>Computer Pictures:</h3>
+      <img class="horizontal" src="images/pcinterior.jpg" alt="Interior of Gaming PC">
+      <img class="vertical" src="images/pcwhole.jpg" alt="Gaming Computer">
+      <h3>The Most Loyal Companion:</h3>
+      <img class="horizontal-fill" src="images/snicker.jpg" alt="Picture of my dog">
+      <button class="fact-btn" onclick="addRandomFact()">Fact!</button>
+      <div id="fun-fact-container"></div>
     </div>
   </body>
 </html>

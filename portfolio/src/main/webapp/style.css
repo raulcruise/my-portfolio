@@ -1,9 +1,87 @@
+.about-title {
+  border-bottom: 3px solid whitesmoke;
+}
+
+.section-title {
+  border-bottom: 2px solid #087E8B;
+}
+
+body {
+  background-color: #292929;
+  color: whitesmoke;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin: 0;
+  margin-left: 0;
+}
+
 #content {
   margin-left: auto;
   margin-right: auto;
   width: 650px;
 }
 
-#greeting-container {
+.fact-btn {
+  background-color: tomato;
+  border: none;
+  color: whitesmoke;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  height: 25px;
+  margin: 4px 2px;
+  width: 75px;
+}
+
+#fun-fact-container {
+  color: #292929;
+  line-height: 200%;
   margin-top: 20px;
+  text-align: center;
+  width: 50%;
+}
+
+img.horizontal { /* Centered images are fit to the restraints of the other elements*/
+  border: 10px outset tomato;
+  width: 65%;
+}
+
+img.horizontal-fill {
+  border:10px outset tomato;
+  width: 100%;
+}
+
+img.vertical {
+  border: 5px outset whitesmoke;
+  width: 21.6%;
+}
+
+.logo1 img {
+  position: fixed;
+  right: 25px;
+  top: 8px;
+  width: 25px;
+}
+
+.logo2 img {
+  position: fixed;
+  right: 60px;
+  top: 8px;
+  width: 25px;
+}
+
+.top-bar {
+  background-color: whitesmoke;
+  color: #292929;
+  height: 40px;
+  width: 100%;
+}
+
+.top-bar li {
+  font-size: 20px;
+  line-height: 8px;
+}
+
+.top-bar ul {
+  display: inline-flex;
+  list-style: none;
 }
