@@ -1,5 +1,9 @@
 .abouttitle {
-  border-bottom:3px solid whitesmoke;
+  border-bottom: 3px solid whitesmoke;
+}
+
+.sectiontitle {
+  border-bottom: 2px solid #087E8B;
 }
 
 body {
@@ -36,10 +40,19 @@ body {
   width: 50%;
 }
 
-img.center { /* Centered images are fit to the restraints of the other elements*/
+img.horizontal { /* Centered images are fit to the restraints of the other elements*/
   border: 10px outset tomato;
-  height: 366px;
-  width: 650px;
+  width: 65%;
+}
+
+img.horizontalfill {
+  border:10px outset tomato;
+  width: 100%;
+}
+
+img.vertical {
+  border: 5px outset whitesmoke;
+  width: 21.6%;
 }
 
 .logo1 img {
