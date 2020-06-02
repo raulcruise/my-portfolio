@@ -32,18 +32,6 @@ body {
   width: 75px;
 }
 
-.quote-btn {
-  background-color: #087E8B;
-  border: none;
-  color: whitesmoke;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 16px;
-  height: 25px;
-  margin: 4px 0px;
-  width: 75px;
-}
-
 #fun-fact-container {
   color: #292929;
   line-height: 200%;
@@ -51,16 +39,6 @@ body {
   margin-top: 5px;
   text-align: center;
   width: 50%;
-}
-
-#quote-container {
-  color: #292929;
-  background-color: whitesmoke;
-  line-height: 200%;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  text-align: center;
-  width: 70%;
 }
 
 img.horizontal { /* Centered images are fit to the restraints of the other elements*/
