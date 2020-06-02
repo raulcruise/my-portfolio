@@ -37,8 +37,17 @@ function addRandomFact() {
   funFactContainer.style.backgroundColor = "whitesmoke";
 }
 
-function getData() {
-  fetch("/data").then(response => response.text()).then((quote) => {
-    document.getElementById("quote-container").innerText = quote;
+function getComments() {
+  // const commentContainer = document.getElementById('comment-container');
+  fetch("/data").then(response => response.json()).then((comments) => {
+    comments.forEach(addComment);
   });
+}
+
+function addComment(comment) {
+    const commentContainer = document.getElementById('comment-container');
+    const node = document.createElement('li');
+    const textNode = document.createTextNode(comment);
+    node.appendChild(textNode);
+    commentContainer.appendChild(node);
 }

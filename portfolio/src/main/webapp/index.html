@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="images/ricon.png">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="getComments()">
     <div class="top-bar">
       <ul>
         <li>Raul Cruz</li>
@@ -48,6 +48,8 @@
       <img class="horizontal-fill" src="images/snicker.jpg" alt="Picture of my dog">
       <button class="fact-btn" onclick="addRandomFact()">Fact!</button>
       <div id="fun-fact-container"></div>
+      <h3>Comments:</h3>
+      <ul id="comment-container"></ul>
     </div>
   </body>
 </html>
