@@ -40,6 +40,7 @@ function addRandomFact() {
 function getComments() {
   // const commentContainer = document.getElementById('comment-container');
   fetch("/data").then(response => response.json()).then((comments) => {
+    console.log(comments);
     comments.forEach(addComment);
   });
 }
@@ -47,7 +48,7 @@ function getComments() {
 function addComment(comment) {
     const commentContainer = document.getElementById('comment-container');
     const node = document.createElement('li');
-    const textNode = document.createTextNode(comment);
+    const textNode = document.createTextNode(comment.text);
     node.appendChild(textNode);
     commentContainer.appendChild(node);
 }
