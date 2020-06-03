@@ -14,6 +14,15 @@ body {
   margin-left: 0;
 }
 
+#comment-box {
+  background-color: whitesmoke;
+  border: 5px outset #087E8B ;
+  font-family : unset;
+  height: 200%;
+  padding: 5px;
+  width: 100%;
+}
+
 #content {
   margin-left: auto;
   margin-right: auto;
