@@ -6,7 +6,7 @@ public final class Comment {
   private final long timestamp;
 
   public Comment(String text, long timestamp) {
-      this.text = text;
-      this.timestamp = timestamp;
+    this.text = text;
+    this.timestamp = timestamp;
   }
 }
