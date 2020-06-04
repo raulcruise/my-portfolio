@@ -14,13 +14,22 @@ body {
   margin-left: 0;
 }
 
+#comment {
+  border-bottom: 1px solid whitesmoke;
+  padding: 3px;
+}
+
 #comment-box {
   background-color: whitesmoke;
-  border: 5px outset #087E8B ;
+  border: 1.25% outset #087E8B ;
   font-family : unset;
   height: 200%;
-  padding: 5px;
-  width: 100%;
+  padding: 1%;
+  width: 98%;
+}
+
+#comment-container {
+  list-style: none;
 }
 
 #content {
@@ -56,13 +65,25 @@ img.horizontal { /* Centered images are fit to the restraints of the other eleme
 }
 
 img.horizontal-fill {
-  border:10px outset tomato;
+  border:8px outset tomato;
   width: 100%;
 }
 
 img.vertical {
   border: 5px outset whitesmoke;
   width: 21.6%;
+}
+
+#limit {
+  background-color: #whitesmoke;
+  border: none;
+  color: #292929;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  height: 25px;
+  margin: 4px 0px;
+  width: 75px;
 }
 
 .logo1 img {
@@ -77,6 +98,19 @@ img.vertical {
   right: 60px;
   top: 8px;
   width: 25px;
+}
+
+.submit-btn {
+  background-color: #087E8B;
+  border: none;
+  color: whitesmoke;
+  cursor: pointer;
+  display: inline-block;
+  float: right;
+  font-size: 16px;
+  height: 25px;
+  margin: 4px 0px;
+  width: 75px;
 }
 
 .top-bar {

@@ -51,8 +51,16 @@
       <form action="/data" method="POST">
         <h3>Comments:</h3>
         <textarea rows="4" id="comment-box" name="comment" placeholder="Say what you want ..."></textarea>
-        <input type="submit"/>
+        <input class="submit-btn" type="submit"/>
       </form>
+      <div></div>
+      <label for="limit">Comments to display:</label>
+      <select name="limit" id="limit" onchange="getComments()">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+        </select>
       <ul id="comment-container"></ul>
     </div>
   </body>

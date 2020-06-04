@@ -32,7 +32,6 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-    ArrayList<String> comments = new ArrayList<String>();
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
@@ -41,12 +40,19 @@ public class DataServlet extends HttpServlet {
     PreparedQuery results = datastore.prepare(query);
 
     ArrayList<Comment> comments = new ArrayList<>();
-    for (Entity entity : results.asIterable()) {
-        String text = (String) entity.getProperty("text");
-        long timestamp = (long) entity.getProperty("timestamp");
 
-        Comment comment = new Comment(text, timestamp);
-        comments.add(comment);
+    String commentLimitString = request.getParameter("limit");
+    int commentLimit = Integer.parseInt(commentLimitString);
+    if (commentLimit <= 0) commentLimit = 5;
+    for (Entity entity : results.asIterable()) {
+      String text = (String) entity.getProperty("text");
+      long timestamp = (long) entity.getProperty("timestamp");
+
+      Comment comment = new Comment(text, timestamp);
+      comments.add(comment);
+      if (--commentLimit == 0) {
+        break;
+      }
     }
 
     Gson gson = new Gson();

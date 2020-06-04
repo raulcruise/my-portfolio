@@ -38,17 +38,27 @@ function addRandomFact() {
 }
 
 function getComments() {
-  // const commentContainer = document.getElementById('comment-container');
-  fetch("/data").then(response => response.json()).then((comments) => {
-    console.log(comments);
+  /* Clear comments before getting new comments so we don't just append comments everytime
+     the user changes how many comments they'd like to see */
+  clearComments();
+
+  const selectElement = document.getElementById("limit");
+  const commentLimit = selectElement.options[selectElement.selectedIndex].value;
+  fetch("/data?limit=" + commentLimit).then(response => response.json()).then((comments) => {
     comments.forEach(addComment);
   });
 }
 
 function addComment(comment) {
-    const commentContainer = document.getElementById('comment-container');
-    const node = document.createElement('li');
-    const textNode = document.createTextNode(comment.text);
-    node.appendChild(textNode);
-    commentContainer.appendChild(node);
+  const commentContainer = document.getElementById('comment-container');
+  const node = document.createElement('li');
+  node.setAttribute("id", "comment");
+  const textNode = document.createTextNode(comment.text);
+  node.appendChild(textNode);
+  commentContainer.appendChild(node);
+}
+
+function clearComments() {
+  const commentContainer = document.getElementById('comment-container');
+  commentContainer.innerHTML = '';
 }
