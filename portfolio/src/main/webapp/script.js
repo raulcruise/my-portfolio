@@ -62,3 +62,7 @@ function clearComments() {
   const commentContainer = document.getElementById('comment-container');
   commentContainer.innerHTML = '';
 }
+
+function deleteComments() {
+  fetch("/delete-data", {method: 'POST'}).then(() => getComments());
+}

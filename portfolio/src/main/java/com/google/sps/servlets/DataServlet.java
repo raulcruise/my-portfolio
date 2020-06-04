@@ -54,6 +54,7 @@ public class DataServlet extends HttpServlet {
       if (--commentLimit == 0) {
         break;
       }
+
     }
 
     Gson gson = new Gson();
@@ -61,6 +62,11 @@ public class DataServlet extends HttpServlet {
 
     response.setContentType("text/html;");
     response.getWriter().println(json);
+    try {
+      Thread.sleep(500);
+    } catch(InterruptedException ex) {
+      Thread.currentThread().interrupt();
+    }
   }
 
   @Override

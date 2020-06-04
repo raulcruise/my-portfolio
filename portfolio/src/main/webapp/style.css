@@ -38,6 +38,18 @@ body {
   width: 650px;
 }
 
+.delete-btn {
+  background-color: tomato;
+  border: none;
+  color: whitesmoke;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  height: 25px;
+  margin: 4px 0px;
+  margin-bottom: 20px;
+  width: 100%;
+}
 .fact-btn {
   background-color: tomato;
   border: none;
