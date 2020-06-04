@@ -58,7 +58,7 @@ public class DataServlet extends HttpServlet {
     Gson gson = new Gson();
     String json = gson.toJson(comments);
 
-    response.setContentType("text/html;");
+    response.setContentType("application/json;");
     response.getWriter().println(json);
     try {
       Thread.sleep(500);
