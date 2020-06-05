@@ -57,11 +57,6 @@ public class DataServlet extends HttpServlet {
 
     response.setContentType("application/json;");
     response.getWriter().println(json);
-    try {
-      Thread.sleep(500);
-    } catch(InterruptedException ex) {
-      Thread.currentThread().interrupt();
-    }
   }
 
   @Override
