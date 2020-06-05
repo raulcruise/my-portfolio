@@ -34,6 +34,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
+    private static final int minCommentLimit = 5;
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query(Comment.entityNameParam).addSort(Comment.timeParam, SortDirection.DESCENDING);
@@ -43,9 +45,7 @@ public class DataServlet extends HttpServlet {
 
     ArrayList<Comment> comments = new ArrayList<>();
 
-    String commentLimitString = request.getParameter("limit");
-    int commentLimit = Integer.parseInt(commentLimitString);
-    if (commentLimit <= 0) commentLimit = 5;
+    int commentLimit = getCommentLimit(request);
 
     results.asList(FetchOptions.Builder.withLimit(commentLimit)).forEach(entity -> {
       String text = (String) entity.getProperty(Comment.textParam);
@@ -81,5 +81,15 @@ public class DataServlet extends HttpServlet {
       datastore.put(commentEntity);
     }
     response.sendRedirect("/index.html#comment-container");
+  }
+
+  public int getCommentLimit(HttpServletRequest request) {
+    String commentLimitString = request.getParameter("limit");
+    if (commentLimitString == null) return minCommentLimit;
+
+    int commentLimit = Integer.parseInt(commentLimitString);
+    if (commentLimit < minCommentLimit) commentLimit = minCommentLimit;
+
+    return commentLimit;
   }
 }
