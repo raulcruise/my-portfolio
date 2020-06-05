@@ -63,11 +63,11 @@ public class DataServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String comment = request.getParameter(Comment.ENTITY_NAME_PARAM);
     if (comment != null) {
-      long timestamp = System.currentTimeMillis();
+      long timestampMillis = System.currentTimeMillis();
 
       Entity commentEntity = new Entity(Comment.ENTITY_NAME_PARAM);
       commentEntity.setProperty(Comment.TEXT_PARAM, comment);
-      commentEntity.setProperty(Comment.TIME_PARAM, timestamp);
+      commentEntity.setProperty(Comment.TIME_PARAM, timestampMillis);
 
       DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
       datastore.put(commentEntity);
@@ -77,9 +77,9 @@ public class DataServlet extends HttpServlet {
 
   public Comment commentFromEntity(Entity entity) {
     String text = (String) entity.getProperty(Comment.TEXT_PARAM);
-    long timestamp = (long) entity.getProperty(Comment.TIME_PARAM);
+    long timestampMillis = (long) entity.getProperty(Comment.TIME_PARAM);
 
-    Comment comment = new Comment(text, timestamp);
+    Comment comment = new Comment(text, timestampMillis);
     return comment;
   }
 

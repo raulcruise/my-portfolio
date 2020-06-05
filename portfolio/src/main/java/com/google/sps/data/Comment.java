@@ -4,13 +4,13 @@ public final class Comment {
   
   public static final String ENTITY_NAME_PARAM = "comment";
   public static final String TEXT_PARAM = "text";
-  public static final String TIME_PARAM = "timestamp";
+  public static final String TIME_PARAM = "timestampMillis";
 
   private final String text;
-  private final long timestamp;
+  private final long timestampMillis;
 
-  public Comment(String text, long timestamp) {
+  public Comment(String text, long timestampMillis) {
     this.text = text;
-    this.timestamp = timestamp;
+    this.timestampMillis = timestampMillis;
   } 
 }
