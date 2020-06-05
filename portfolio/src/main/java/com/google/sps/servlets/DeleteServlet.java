@@ -46,8 +46,5 @@ public class DeleteServlet extends HttpServlet {
       Key indexkey = entity.getKey();
       datastore.delete(indexkey);
     }
-
-    response.setContentType("text/html");
-    response.getWriter().println(' ');
   }
 }
