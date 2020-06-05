@@ -48,10 +48,7 @@ public class DataServlet extends HttpServlet {
     int commentLimit = getCommentLimit(request);
 
     results.asList(FetchOptions.Builder.withLimit(commentLimit)).forEach(entity -> {
-      String text = (String) entity.getProperty(Comment.textParam);
-      long timestamp = (long) entity.getProperty(Comment.timeParam);
-
-      Comment comment = new Comment(text, timestamp);
+      Comment comment = commentFromEntity(entity);
       comments.add(comment);
     });
 
@@ -81,6 +78,14 @@ public class DataServlet extends HttpServlet {
       datastore.put(commentEntity);
     }
     response.sendRedirect("/index.html#comment-container");
+  }
+
+  public Comment commentFromEntity(Entity entity) {
+    String text = (String) entity.getProperty(Comment.textParam);
+    long timestamp = (long) entity.getProperty(Comment.timeParam);
+
+    Comment comment = new Comment(text, timestamp);
+    return comment;
   }
 
   public int getCommentLimit(HttpServletRequest request) {
