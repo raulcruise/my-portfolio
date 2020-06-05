@@ -50,6 +50,7 @@ body {
   margin-bottom: 20px;
   width: 100%;
 }
+
 .fact-btn {
   background-color: tomato;
   border: none;
@@ -77,7 +78,7 @@ img.horizontal { /* Centered images are fit to the restraints of the other eleme
 }
 
 img.horizontal-fill {
-  border:8px outset tomato;
+  border: 8px outset tomato;
   width: 100%;
 }
 

@@ -34,7 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-    private static final int MIN_COMMENT_LIMIT = 5;
+  private static final int MIN_COMMENT_LIMIT = 5;
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
