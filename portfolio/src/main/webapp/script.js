@@ -38,13 +38,10 @@ function addRandomFact() {
 }
 
 function getComments() {
-  /* Clear comments before getting new comments so we don't just append comments everytime
-     the user changes how many comments they'd like to see */
-  clearComments();
-
   const selectElement = document.getElementById("limit");
   const commentLimit = selectElement.options[selectElement.selectedIndex].value;
   fetch("/data?limit=" + commentLimit).then(response => response.json()).then((comments) => {
+    clearComments();
     comments.forEach(addComment);
   });
 }
