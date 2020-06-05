@@ -34,11 +34,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-    private static final int minCommentLimit = 5;
+    private static final int MIN_COMMENT_LIMIT = 5;
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Query query = new Query(Comment.entityNameParam).addSort(Comment.timeParam, SortDirection.DESCENDING);
+    Query query = new Query(Comment.ENTITY_NAME_PARAM).addSort(Comment.TIME_PARAM, SortDirection.DESCENDING);
     
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
@@ -66,13 +66,13 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String comment = request.getParameter(Comment.entityNameParam);
+    String comment = request.getParameter(Comment.ENTITY_NAME_PARAM);
     if (comment != null) {
       long timestamp = System.currentTimeMillis();
 
-      Entity commentEntity = new Entity(Comment.entityNameParam);
-      commentEntity.setProperty(Comment.textParam, comment);
-      commentEntity.setProperty(Comment.timeParam, timestamp);
+      Entity commentEntity = new Entity(Comment.ENTITY_NAME_PARAM);
+      commentEntity.setProperty(Comment.TEXT_PARAM, comment);
+      commentEntity.setProperty(Comment.TIME_PARAM, timestamp);
 
       DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
       datastore.put(commentEntity);
@@ -81,8 +81,8 @@ public class DataServlet extends HttpServlet {
   }
 
   public Comment commentFromEntity(Entity entity) {
-    String text = (String) entity.getProperty(Comment.textParam);
-    long timestamp = (long) entity.getProperty(Comment.timeParam);
+    String text = (String) entity.getProperty(Comment.TEXT_PARAM);
+    long timestamp = (long) entity.getProperty(Comment.TIME_PARAM);
 
     Comment comment = new Comment(text, timestamp);
     return comment;
@@ -90,10 +90,10 @@ public class DataServlet extends HttpServlet {
 
   public int getCommentLimit(HttpServletRequest request) {
     String commentLimitString = request.getParameter("limit");
-    if (commentLimitString == null) return minCommentLimit;
+    if (commentLimitString == null) return MIN_COMMENT_LIMIT;
 
     int commentLimit = Integer.parseInt(commentLimitString);
-    if (commentLimit < minCommentLimit) commentLimit = minCommentLimit;
+    if (commentLimit < MIN_COMMENT_LIMIT) commentLimit = MIN_COMMENT_LIMIT;
 
     return commentLimit;
   }
