@@ -14,7 +14,7 @@ body {
   margin-left: 0;
 }
 
-#comment {
+.comment-node {
   border-bottom: 1px solid whitesmoke;
   padding: 3px;
 }

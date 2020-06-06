@@ -46,10 +46,11 @@ function getComments() {
   });
 }
 
-function addComment(comment) {
+function addComment(comment, index) {
   const commentContainer = document.getElementById('comment-container');
   const node = document.createElement('li');
-  node.setAttribute('id', 'comment');
+  node.setAttribute('class', 'comment-node');
+  node.setAttribute('id', 'comment' + index);
   const textNode = document.createTextNode(comment.text);
   node.appendChild(textNode);
   commentContainer.appendChild(node);
