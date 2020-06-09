@@ -42,12 +42,12 @@ public class DeleteServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
-    List keyList = keyListBuilder(results);
+    List<Key> keyList = keyListBuilder(results);
     datastore.delete(keyList);
   }
 
   public List keyListBuilder(PreparedQuery results) {
-      List keyList = new ArrayList<>();
+      List<Key> keyList = new ArrayList<>();
       for (Entity entity : results.asIterable()) {
         keyList.add(entity.getKey());
       }
