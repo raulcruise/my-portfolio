@@ -43,7 +43,7 @@ public class DeleteServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query(Comment.ENTITY_NAME_PARAM);
     
-    DatastoreServiceConfig datastoreConfig = DatastoreServiceConfig.Builder.withReadPolicy(new ReadPolicy(Consistency.STRONG));
+    DatastoreServiceConfig datastoreConfig = DatastoreServiceConfig.Builder.withReadPolicy(new ReadPolicy(Consistency.STRONG)).deadline(5.0);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService(datastoreConfig);
     PreparedQuery results = datastore.prepare(query);
 
