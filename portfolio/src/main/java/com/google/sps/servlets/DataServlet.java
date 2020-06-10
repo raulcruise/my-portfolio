@@ -82,7 +82,7 @@ public class DataServlet extends HttpServlet {
     response.sendRedirect("/index.html#comment-container");
   }
 
-  public Comment commentFromEntity(Entity entity) {
+  private Comment commentFromEntity(Entity entity) {
     String text = (String) entity.getProperty(Comment.TEXT_PARAM);
     long timestampMillis = (long) entity.getProperty(Comment.TIME_PARAM);
 
@@ -90,7 +90,7 @@ public class DataServlet extends HttpServlet {
     return comment;
   }
 
-  public int getCommentLimit(HttpServletRequest request) {
+  private int getCommentLimit(HttpServletRequest request) {
     String commentLimitString = request.getParameter("limit");
     if (commentLimitString == null) return MIN_COMMENT_LIMIT;
 

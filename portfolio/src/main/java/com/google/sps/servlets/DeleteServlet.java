@@ -52,7 +52,7 @@ public class DeleteServlet extends HttpServlet {
     datastore.delete(keyList);
   }
 
-  public List keyListBuilder(PreparedQuery results) {
+  private List keyListBuilder(PreparedQuery results) {
       List<Key> keyList = new ArrayList<>();
       for (Entity entity : results.asIterable()) {
         keyList.add(entity.getKey());
