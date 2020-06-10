@@ -92,11 +92,7 @@ public class DataServlet extends HttpServlet {
 
   private int getCommentLimit(HttpServletRequest request) {
     String commentLimitString = request.getParameter("limit");
-    if (commentLimitString == null) return MIN_COMMENT_LIMIT;
 
-    int commentLimit = Integer.parseInt(commentLimitString);
-    if (commentLimit < MIN_COMMENT_LIMIT) commentLimit = MIN_COMMENT_LIMIT;
-
-    return commentLimit;
+    return Math.max(Integer.parseInt(commentLimitString), MIN_COMMENT_LIMIT);
   }
 }
