@@ -53,10 +53,10 @@ public class DeleteServlet extends HttpServlet {
   }
 
   private List keyListBuilder(PreparedQuery results) {
-      List<Key> keyList = new ArrayList<>();
-      for (Entity entity : results.asIterable()) {
-        keyList.add(entity.getKey());
-      }
-      return keyList;
+    List<Key> keyList = new ArrayList<>();
+    for (Entity entity : results.asIterable()) {
+      keyList.add(entity.getKey());
+    }
+    return keyList;
   }
 }
