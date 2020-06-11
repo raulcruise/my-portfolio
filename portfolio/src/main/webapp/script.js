@@ -162,13 +162,22 @@ function createMap() {
         ]
       });
 
+  // Store urls in String variables for readability and easiness to follow
+  const shabuShabuWikiUrl = 'https://en.wikipedia.org/wiki/Shabu-shabu';
+  const koreanBarbecueWikiUrl = 'https://en.wikipedia.org/wiki/Korean_barbecue';
+  const hotPotWikiUrl = 'https://en.wikipedia.org/wiki/Hot_pot';
+  const boilingPointUrl = 'https://www.bpgroupusa.com/';
+  const inNOutUrl = 'https://www.in-n-out.com/';
+  const clydesHotChickenUrl = 'https://www.clydeshotchicken.com/';
+  const portosBakeryUrl = 'https://www.portosbakery.com/';
+
   // Variables starting with shabu will be referring to "House of Shabu Shabu II".
   const shabuContentString = '<div id="shabu-content">' +
       '<h1 class="firstHeading">House of Shabu Shabu II</h1>' +
       '<div>' +
-      '<p><b>House of <a href="https://en.wikipedia.org/wiki/Shabu-shabu">Shabu Shabu</a> II</b> is a great place to ' +
+      '<p><b>House of <a href="' + shabuShabuWikiUrl + '">Shabu Shabu</a> II</b> is a great place to ' +
       'go to with a friend or a special someone, especially if you are into ' +
-      'the interactive experience of <a href="https://en.wikipedia.org/wiki/Korean_barbecue">Korean barbecue</a>. ' +
+      'the interactive experience of <a href="' + koreanBarbecueWikiUrl + '">Korean barbecue</a>. ' +
       'The experience at House of Shabu Shabu II is similar in that ' +
       'you choose from a selection of menus which include a multitude ' +
       'of meats and vegetables and can order as much as you want! </p> ' +
@@ -179,14 +188,13 @@ function createMap() {
   const boilingContentString = '<div id="boiling-content">' +
       '<h1 class="firstHeading">Boiling Point</h1>' +
       '<div>' +
-      '<p><b>Boiling Point</b> is an establishment that specializes in <a href="https://en.wikipedia.org/wiki/Hot_pot">Taiwanese hot soup</a> cuisine. ' +
+      '<p><b>Boiling Point</b> is an establishment that specializes in <a href="' + hotPotWikiUrl + '">Taiwanese hot soup</a> cuisine. ' +
       'I fell in love with this restaurant simply because of the delicious flavors that I ' +
       'experienced here, and the fact that you get to eat this hot soup ' +
       'while it is sitting over a flame so it stays nice and hot. ' +
       'I recommend ordering a green tea to balance out the heat ' +
       'with a splash of freshness and sweetness. </p> ' +
-      '<p>Link: <a href="https://www.bpgroupusa.com/">' +
-      'https://www.bpgroupusa.com/</a></p> ' +
+      '<p>Link: <a href="' + boilingPointUrl + '">' + boilingPointUrl + '</a></p> ' +
       '</div>' +
       '</div>';
 
@@ -199,13 +207,12 @@ function createMap() {
       'chains such as Shake Shack from the East and Whataburger from Texas. Even though I often ' +
       'decide to eat here, everytime I take a bite out of their cheeseburger I get ' +
       'the same experience that I remember having when I first tried it. </p> ' +
-      '<p>Link: <a href="https://www.in-n-out.com/">' +
-      'https://www.in-n-out.com/</a></p> ' +
+      '<p>Link: <a href="' + inNOutUrl + '">' + inNOutUrl + '</a></p> ' +
       '</div>' +
       '</div>';
 
-  // Variables starting with clyde will be referring to "Clyde's Hot Chicken".
-  const clydeContentString = '<div id="clyde-content">' +
+  // Variables starting with clydes will be referring to "Clyde's Hot Chicken".
+  const clydesContentString = '<div id="clydes-content">' +
       `<h1 class="firstHeading">Clyde's Hot Chicken</h1>` +
       '<div>' +
       `<p><b>Clyde's Hot Chicken</b> is my go-to when I'm craving a good chicken sandwich. ` +
@@ -214,13 +221,12 @@ function createMap() {
       'I love their chicken sandwich, but the fries that come with the combo are ' +
       `nothing to laugh at. Unlike most fast food chains, Clyde's seasons their fries ` +
       'with a seasoning so good that it makes them my favorite fries from any food chain. </p>' +
-      '<p>Link: <a href="https://www.clydeshotchicken.com/">' +
-      'https://www.clydeshotchicken.com/</a></p> ' +
+      '<p>Link: <a href="' + clydesHotChickenUrl + '">' + clydesHotChickenUrl + '</a></p> ' +
       '</div>' +
       '</div>';
 
-  // Variables starting with porto will be referring to "Porto's Bakery".
-  const portoContentString = '<div id="porto-content">' +
+  // Variables starting with portos will be referring to "Porto's Bakery".
+  const portosContentString = '<div id="portos-content">' +
       `<h1 class="firstHeading">Porto's Bakery</h1>` +
       '<div>' +
       `<p><b>Porto's Bakery</b> differs from the other restaurants on this list as ` +
@@ -229,8 +235,7 @@ function createMap() {
       `sounds like Porto's is somewhere you would go to get a good breakfast, you can go ` +
       'at any time of your day and be satisfied with only a few pastries. You can also ' +
       'choose to explore their other menu items that include soups, sandwiches, and much more. </p>' +
-      '<p>Link: <a href="https://www.portosbakery.com/">' +
-      'https://www.portosbakery.com/</a></p> ' +
+      '<p>Link: <a href="' + portosBakeryUrl + '">' + portosBakeryUrl + '</a></p> ' +
       '</div>' +
       '</div>';
 
@@ -246,19 +251,19 @@ function createMap() {
     content: inContentString
   });
 
-  const clydeInfoWindow = new google.maps.InfoWindow({
-    content: clydeContentString
+  const clydesInfoWindow = new google.maps.InfoWindow({
+    content: clydesContentString
   });
 
-  const portoInfoWindow = new google.maps.InfoWindow({
-    content: portoContentString
+  const portosInfoWindow = new google.maps.InfoWindow({
+    content: portosContentString
   });
 
   const shabuLatLng = new google.maps.LatLng(33.840585, -117.942175);
   const boilingLatLng = new google.maps.LatLng(33.761388, -117.953333);
   const inLatLng = new google.maps.LatLng(33.819016, -117.888945);
-  const clydeLatLng = new google.maps.LatLng(33.874545, -117.924601);
-  const portoLatLng = new google.maps.LatLng(33.852421, -117.997408);
+  const clydesLatLng = new google.maps.LatLng(33.874545, -117.924601);
+  const portosLatLng = new google.maps.LatLng(33.852421, -117.997408);
 
   const shabuMarker = new google.maps.Marker({
     position: shabuLatLng,
@@ -278,14 +283,14 @@ function createMap() {
     title: 'In n Out!'
   });
 
-  const clydeMarker = new google.maps.Marker({
-    position: clydeLatLng,
+  const clydesMarker = new google.maps.Marker({
+    position: clydesLatLng,
     map: map,
     title: `Clyde's Hot Chicken!`
   });
 
-  const portoMarker = new google.maps.Marker({
-    position: portoLatLng,
+  const portosMarker = new google.maps.Marker({
+    position: portosLatLng,
     map: map,
     title: `Porto's Bakery!`
   });
@@ -302,11 +307,11 @@ function createMap() {
     inInfoWindow.open(map, inMarker);
   });
 
-  clydeMarker.addListener('click', function() {
-    clydeInfoWindow.open(map, clydeMarker);
+  clydesMarker.addListener('click', function() {
+    clydesInfoWindow.open(map, clydesMarker);
   });
 
-  portoMarker.addListener('click', function() {
-    portoInfoWindow.open(map, portoMarker);
+  portosMarker.addListener('click', function() {
+    portosInfoWindow.open(map, portosMarker);
   });
 }
