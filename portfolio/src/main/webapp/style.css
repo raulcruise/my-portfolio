@@ -14,10 +14,41 @@ body {
   margin-left: 0;
 }
 
+.comment-node {
+  border-bottom: 1px solid whitesmoke;
+  padding: 3px;
+}
+
+#comment-box {
+  background-color: whitesmoke;
+  border: 1.25% outset #087E8B;
+  font-family : unset;
+  height: 200%;
+  padding: 1%;
+  width: 98%;
+}
+
+#comment-container {
+  list-style: none;
+}
+
 #content {
   margin-left: auto;
   margin-right: auto;
   width: 650px;
+}
+
+.delete-btn {
+  background-color: tomato;
+  border: none;
+  color: whitesmoke;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  height: 25px;
+  margin: 4px 0px;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 .fact-btn {
@@ -28,14 +59,15 @@ body {
   display: inline-block;
   font-size: 16px;
   height: 25px;
-  margin: 4px 2px;
+  margin: 4px 0px;
   width: 75px;
 }
 
 #fun-fact-container {
   color: #292929;
   line-height: 200%;
-  margin-top: 20px;
+  margin-bottom: 5px;
+  margin-top: 5px;
   text-align: center;
   width: 50%;
 }
@@ -46,13 +78,25 @@ img.horizontal { /* Centered images are fit to the restraints of the other eleme
 }
 
 img.horizontal-fill {
-  border:10px outset tomato;
+  border: 8px outset tomato;
   width: 100%;
 }
 
 img.vertical {
   border: 5px outset whitesmoke;
   width: 21.6%;
+}
+
+#limit {
+  background-color: whitesmoke;
+  border: none;
+  color: #292929;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  height: 25px;
+  margin: 4px 0px;
+  width: 75px;
 }
 
 .logo1 img {
@@ -67,6 +111,19 @@ img.vertical {
   right: 60px;
   top: 8px;
   width: 25px;
+}
+
+.submit-btn {
+  background-color: #087E8B;
+  border: none;
+  color: whitesmoke;
+  cursor: pointer;
+  display: inline-block;
+  float: right;
+  font-size: 16px;
+  height: 25px;
+  margin: 4px 2px;
+  width: 75px;
 }
 
 .top-bar {

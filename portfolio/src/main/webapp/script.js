@@ -17,12 +17,12 @@
  */
 function addRandomFact() {
   const funFacts = [
-    "I've built 8 computers so far!",
-    "I interned at Google last summer.",
-    "I spent my last summer in New York City.",
-    "I speak Spanish.",
-    "I love broccoli.",
-    "I can solve a Rubik's Cube."
+    `I've built 8 computers so far!`,
+    'I interned at Google last summer.',
+    'I spent my last summer in New York City.',
+    'I speak Spanish.',
+    'I love broccoli.',
+    `I can solve a Rubik's Cube.`
   ];
 
   // Pick a random greeting.
@@ -34,5 +34,33 @@ function addRandomFact() {
     funFact = funFacts[Math.floor(Math.random() * funFacts.length)];
   }
   funFactContainer.innerText = funFact;
-  funFactContainer.style.backgroundColor = "whitesmoke";
+  funFactContainer.style.backgroundColor = 'whitesmoke';
+}
+
+function getComments() {
+  const selectElement = document.getElementById('limit');
+  const commentLimit = selectElement.options[selectElement.selectedIndex].value;
+  fetch('/data?limit=' + commentLimit).then(response => response.json()).then((comments) => {
+    clearComments();
+    comments.forEach(addComment);
+  });
+}
+
+function addComment(comment, index) {
+  const commentContainer = document.getElementById('comment-container');
+  const node = document.createElement('li');
+  node.setAttribute('class', 'comment-node');
+  node.setAttribute('id', 'comment' + index);
+  const textNode = document.createTextNode(comment.text);
+  node.appendChild(textNode);
+  commentContainer.appendChild(node);
+}
+
+function clearComments() {
+  const commentContainer = document.getElementById('comment-container');
+  commentContainer.innerHTML = '';
+}
+
+function deleteComments() {
+  fetch('/delete-data', {method: 'POST'}).then(() => getComments());
 }

@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <title>Raul's Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/ricon.png">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="getComments()">
     <div class="top-bar">
       <ul>
         <li>Raul Cruz</li>
@@ -47,6 +48,20 @@
       <img class="horizontal-fill" src="images/snicker.jpg" alt="Picture of my dog">
       <button class="fact-btn" onclick="addRandomFact()">Fact!</button>
       <div id="fun-fact-container"></div>
+      <form action="/data" method="POST">
+        <h3>Comments:</h3>
+        <textarea rows="4" id="comment-box" name="comment" placeholder="Say what you want"></textarea>
+        <input class="submit-btn" type="submit"/>
+      </form>
+      <label for="limit">Comments to display:</label>
+      <select name="limit" id="limit" onchange="getComments()">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+      </select>
+      <ul id="comment-container"></ul>
+      <button class="delete-btn" onclick="deleteComments()">Delete Comments</button>
     </div>
   </body>
 </html>
