@@ -152,29 +152,47 @@ function createMap() {
         ]
       });
 
+// Variables starting with shabu will be referring to "Hose of Shabu Shabu II"
   const shabuContentString = '<div id="shabu-content">'+
     '<h1 class="firstHeading">House of Shabu Shabu II</h1>'+
     '<div>'+
-      '<p><b>House of <a href="https://en.wikipedia.org/wiki/Shabu-shabu">Shabu Shabu</a> II</b> is a great place to  ' +
-      'go to with a friend or a special someone, especially if you are into  '+
-      'the interactive experience of <a href="https://en.wikipedia.org/wiki/Korean_barbecue">Korean barbecue</a>.'+
-      'The experience at House of Shabu Shabu II is similar in that '+
-      'you choose from a selection of menus which include a multitude '+
-      'of meats and vegetables and can order as much as you want! </p> '+
-      '</div>'+
-      '</div>';
+    '<p><b>House of <a href="https://en.wikipedia.org/wiki/Shabu-shabu">Shabu Shabu</a> II</b> is a great place to  ' +
+    'go to with a friend or a special someone, especially if you are into  '+
+    'the interactive experience of <a href="https://en.wikipedia.org/wiki/Korean_barbecue">Korean barbecue</a>.'+
+    'The experience at House of Shabu Shabu II is similar in that '+
+    'you choose from a selection of menus which include a multitude '+
+    'of meats and vegetables and can order as much as you want! </p> '+
+    '</div>'+
+    '</div>';
 
+  // Variables starting with boiling will be referring to "Boiling Point"
   const boilingContentString = '<div id="boiling-content">'+
     '<h1 class="firstHeading">Boiling Point</h1>'+
     '<div>'+
-      '<p><b>Boiling Point</b> is an establishment that specializes in <a href="https://en.wikipedia.org/wiki/Hot_pot">Taiwanese hot soup</a> cuisine. ' +
-      'I fell in love with this restaurant simply because of the delicious flavors that I '+
-      'experienced here, and the fact that you get to eat this hot soup'+
-      'while it is sitting over a flame so it stay nice and hot. '+
-      'I recommend ordering a green tea to balance out the heat '+
-      'with a splash of freshness and sweetness. </p> '+
-      '</div>'+
-      '</div>';
+    '<p><b>Boiling Point</b> is an establishment that specializes in <a href="https://en.wikipedia.org/wiki/Hot_pot">Taiwanese hot soup</a> cuisine. ' +
+    'I fell in love with this restaurant simply because of the delicious flavors that I '+
+    'experienced here, and the fact that you get to eat this hot soup'+
+    'while it is sitting over a flame so it stay nice and hot. '+
+    'I recommend ordering a green tea to balance out the heat '+
+    'with a splash of freshness and sweetness. </p> '+
+    '<p>Link: <a href="https://www.bpgroupusa.com/">'+
+    'https://www.bpgroupusa.com/</a></p> '+
+    '</div>'+
+    '</div>';
+
+  // Variables starting with in will be referring to "In n Out"
+  const inContentString = '<div id="in-content">'+
+    '<h1 class="firstHeading">In n Out</h1>'+
+    '<div>'+
+    '<p><b>In n Out</b> is a classic fast food chain that is dear to many in California and the Southwest. ' +
+    'There are many ongoing debates where groups debate whether this chain is better than other localized '+
+    'chains such as Shake Shack from the East and Whataburger from Texas. Even though I often '+
+    'decide to eat here, everytime I take a bite out of their cheeseburger I get '+
+    'the same experience that I remember having when I first tried it. </p> '+
+    '<p>Link: <a href="https://www.in-n-out.com/">'+
+    'https://www.in-n-out.com/</a></p> '+
+    '</div>'+
+    '</div>';
 
   const shabuInfoWindow = new google.maps.InfoWindow({
     content: shabuContentString
@@ -184,9 +202,13 @@ function createMap() {
     content: boilingContentString
   });
 
-  // Coordinates to House of Shabu Shabu II
+  const inInfoWindow = new google.maps.InfoWindow({
+    content: inContentString
+  });
+
   const shabuLatLng = new google.maps.LatLng(33.840585, -117.942175);
   const boilingLatLng = new google.maps.LatLng(33.761388, -117.953333);
+  const inLatLng = new google.maps.LatLng(33.819016, -117.888945);
 
   const shabuMarker = new google.maps.Marker({
     position: shabuLatLng,
@@ -200,11 +222,21 @@ function createMap() {
     title:"Boiling Point!"
   });
 
+  const inMarker = new google.maps.Marker({
+    position: inLatLng,
+    map: map,
+    title:"In n Out!"
+  });
+
   shabuMarker.addListener('click', function() {
     shabuInfoWindow.open(map, shabuMarker);
   });
 
   boilingMarker.addListener('click', function() {
     boilingInfoWindow.open(map, boilingMarker);
-  })
-} 
+  });
+
+  inMarker.addListener('click', function() {
+    inInfoWindow.open(map, inMarker);
+  });
+}
