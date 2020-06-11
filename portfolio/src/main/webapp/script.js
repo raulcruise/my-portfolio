@@ -173,7 +173,7 @@ function createMap() {
     '<p><b>Boiling Point</b> is an establishment that specializes in <a href="https://en.wikipedia.org/wiki/Hot_pot">Taiwanese hot soup</a> cuisine. '+
     'I fell in love with this restaurant simply because of the delicious flavors that I '+
     'experienced here, and the fact that you get to eat this hot soup '+
-    'while it is sitting over a flame so it stay nice and hot. '+
+    'while it is sitting over a flame so it stays nice and hot. '+
     'I recommend ordering a green tea to balance out the heat '+
     'with a splash of freshness and sweetness. </p> '+
     '<p>Link: <a href="https://www.bpgroupusa.com/">'+
@@ -214,7 +214,7 @@ function createMap() {
     `<h1 class="firstHeading">Porto's Bakery</h1>`+
     '<div>'+
     `<p><b>Porto's Bakery</b> differs from the other restaurants on this list as `+
-    'they specialize in Cuban baked goods. The baked goods come fresh out fresh everyday '+
+    'they specialize in Cuban baked goods. The baked goods come out fresh everyday '+
     'and range from sweet fruit flavored desserts to savory appetizers. Even though it '+
     `sounds like Porto's is somewhere you would go to get a good breakfast, you can go `+
     'at any time of your day and be satisfied with only a few pastries. You can also '+
