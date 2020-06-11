@@ -66,9 +66,10 @@ function deleteComments() {
 }
 
 function createMap() {
+  // Create a map with a dark color scheme centered at my hometown, Anaheim
   const map = new google.maps.Map(
       document.getElementById('map'), {
-        center: {lat: 33.8366, lng: -117.9143},
+      center: {lat: 33.835982, lng: -117.914157},
         zoom: 10,
         styles: [
           {elementType: 'geometry', stylers: [{color: '#292929'}]},
@@ -152,7 +153,7 @@ function createMap() {
         ]
       });
 
-// Variables starting with shabu will be referring to "Hose of Shabu Shabu II"
+  // Variables starting with shabu will be referring to "Hose of Shabu Shabu II"
   const shabuContentString = '<div id="shabu-content">'+
     '<h1 class="firstHeading">House of Shabu Shabu II</h1>'+
     '<div>'+
@@ -169,7 +170,7 @@ function createMap() {
   const boilingContentString = '<div id="boiling-content">'+
     '<h1 class="firstHeading">Boiling Point</h1>'+
     '<div>'+
-    '<p><b>Boiling Point</b> is an establishment that specializes in <a href="https://en.wikipedia.org/wiki/Hot_pot">Taiwanese hot soup</a> cuisine. ' +
+    '<p><b>Boiling Point</b> is an establishment that specializes in <a href="https://en.wikipedia.org/wiki/Hot_pot">Taiwanese hot soup</a> cuisine. '+
     'I fell in love with this restaurant simply because of the delicious flavors that I '+
     'experienced here, and the fact that you get to eat this hot soup'+
     'while it is sitting over a flame so it stay nice and hot. '+
@@ -184,13 +185,28 @@ function createMap() {
   const inContentString = '<div id="in-content">'+
     '<h1 class="firstHeading">In n Out</h1>'+
     '<div>'+
-    '<p><b>In n Out</b> is a classic fast food chain that is dear to many in California and the Southwest. ' +
+    '<p><b>In n Out</b> is a classic fast food chain that is dear to many in California and the Southwest. '+
     'There are many ongoing debates where groups debate whether this chain is better than other localized '+
     'chains such as Shake Shack from the East and Whataburger from Texas. Even though I often '+
     'decide to eat here, everytime I take a bite out of their cheeseburger I get '+
     'the same experience that I remember having when I first tried it. </p> '+
     '<p>Link: <a href="https://www.in-n-out.com/">'+
     'https://www.in-n-out.com/</a></p> '+
+    '</div>'+
+    '</div>';
+
+  // Variables starting with clyde will be referring to "Clyde's Hot Chicken"
+  const clydeContentString = '<div id="clyde-content">'+
+    `<h1 class="firstHeading">Clyde's Hot Chicken</h1>`+
+    '<div>'+
+    `<p><b>Clyde's Hot Chicken</b> is my go-to when I'm craving a good chicken sandwich. `+
+    `The chicken sandwich here caught my attention due to it's delicous seasoning, `+
+    'perfect spice level, and the balance it achieves paired with their coleslaw. '+
+    'I love their chicken sandwich, but the fries that come with the combo are '+
+    `nothing to laugh at. Unlike most fast food chains, Clyde's seasons their fries `+
+    'with a seasoning so good that they are my favorite fries from any food chain. </p>'+
+    '<p>Link: <a href="https://www.clydeshotchicken.com/">'+
+    'https://www.clydeshotchicken.com/</a></p> '+
     '</div>'+
     '</div>';
 
@@ -206,27 +222,38 @@ function createMap() {
     content: inContentString
   });
 
+  const clydeInfoWindow = new google.maps.InfoWindow({
+      content: clydeContentString
+  })
+
   const shabuLatLng = new google.maps.LatLng(33.840585, -117.942175);
   const boilingLatLng = new google.maps.LatLng(33.761388, -117.953333);
   const inLatLng = new google.maps.LatLng(33.819016, -117.888945);
+  const clydeLatLng = new google.maps.LatLng(33.874545, -117.924601);
 
   const shabuMarker = new google.maps.Marker({
     position: shabuLatLng,
     map: map,
-    title:"House of Shabu Shabu II!"
+    title: 'House of Shabu Shabu II!'
   });
 
   const boilingMarker = new google.maps.Marker({
     position: boilingLatLng,
     map: map,
-    title:"Boiling Point!"
+    title: 'Boiling Point!'
   });
 
   const inMarker = new google.maps.Marker({
     position: inLatLng,
     map: map,
-    title:"In n Out!"
+    title: 'In n Out!'
   });
+
+  const clydeMarker = new google.maps.Marker({
+    position: clydeLatLng,
+    map: map,
+    title: `Clyde's Hot Chicken!`
+  })
 
   shabuMarker.addListener('click', function() {
     shabuInfoWindow.open(map, shabuMarker);
@@ -239,4 +266,8 @@ function createMap() {
   inMarker.addListener('click', function() {
     inInfoWindow.open(map, inMarker);
   });
+
+  clydeMarker.addListener('click', function() {
+      clydeInfoWindow.open(map, clydeMarker);
+  })
 }
