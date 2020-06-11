@@ -200,9 +200,9 @@ function createMap() {
 
   // Variables starting with in will be referring to "In n Out".
   const inContentString = '<div id="in-content">' +
-      '<h1 class="firstHeading">In n Out</h1>' +
+      '<h1 class="firstHeading">In-n-Out Burger</h1>' +
       '<div>' +
-      '<p><b>In n Out</b> is a classic fast food chain that is dear to many in California and the Southwest. ' +
+      '<p><b>In-n-Out</b> is a classic fast food chain that is dear to many in California and the Southwest. ' +
       'There are many ongoing debates where groups debate whether this chain is better than other localized ' +
       'chains such as Shake Shack from the East and Whataburger from Texas. Even though I often ' +
       'decide to eat here, everytime I take a bite out of their cheeseburger I get ' +
@@ -239,79 +239,32 @@ function createMap() {
       '</div>' +
       '</div>';
 
-  const shabuInfoWindow = new google.maps.InfoWindow({
-    content: shabuContentString
-  });
-
-  const boilingInfoWindow = new google.maps.InfoWindow({
-    content: boilingContentString
-  });
-
-  const inInfoWindow = new google.maps.InfoWindow({
-    content: inContentString
-  });
-
-  const clydesInfoWindow = new google.maps.InfoWindow({
-    content: clydesContentString
-  });
-
-  const portosInfoWindow = new google.maps.InfoWindow({
-    content: portosContentString
-  });
-
   const shabuLatLng = new google.maps.LatLng(33.840585, -117.942175);
   const boilingLatLng = new google.maps.LatLng(33.761388, -117.953333);
   const inLatLng = new google.maps.LatLng(33.819016, -117.888945);
   const clydesLatLng = new google.maps.LatLng(33.874545, -117.924601);
   const portosLatLng = new google.maps.LatLng(33.852421, -117.997408);
 
-  const shabuMarker = new google.maps.Marker({
-    position: shabuLatLng,
+  addRestaurant(map, shabuLatLng, 'House of Shabu Shabu II!', shabuContentString);
+  addRestaurant(map, boilingLatLng, 'Boiling Point!', boilingContentString);
+  addRestaurant(map, inLatLng, 'In-N-Out Burger!', inContentString);
+  addRestaurant(map, clydesLatLng, `Clyde's Hot Chicken!`, clydesContentString);
+  addRestaurant(map, portosLatLng, `Porto's Bakery!`, portosContentString);
+
+}
+
+function addRestaurant(map, latLng, title, description) {
+  const marker = new google.maps.Marker({
+    position: latLng,
     map: map,
-    title: 'House of Shabu Shabu II!'
+    title: title
   });
 
-  const boilingMarker = new google.maps.Marker({
-    position: boilingLatLng,
-    map: map,
-    title: 'Boiling Point!'
+  const infoWindow = new google.maps.InfoWindow({
+    content: description
   });
 
-  const inMarker = new google.maps.Marker({
-    position: inLatLng,
-    map: map,
-    title: 'In n Out!'
-  });
-
-  const clydesMarker = new google.maps.Marker({
-    position: clydesLatLng,
-    map: map,
-    title: `Clyde's Hot Chicken!`
-  });
-
-  const portosMarker = new google.maps.Marker({
-    position: portosLatLng,
-    map: map,
-    title: `Porto's Bakery!`
-  });
-
-  shabuMarker.addListener('click', function() {
-    shabuInfoWindow.open(map, shabuMarker);
-  });
-
-  boilingMarker.addListener('click', function() {
-    boilingInfoWindow.open(map, boilingMarker);
-  });
-
-  inMarker.addListener('click', function() {
-    inInfoWindow.open(map, inMarker);
-  });
-
-  clydesMarker.addListener('click', function() {
-    clydesInfoWindow.open(map, clydesMarker);
-  });
-
-  portosMarker.addListener('click', function() {
-    portosInfoWindow.open(map, portosMarker);
+  marker.addListener('click', function() {
+    infoWindow.open(map, marker);
   });
 }
