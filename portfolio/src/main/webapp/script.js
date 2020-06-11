@@ -66,7 +66,7 @@ function deleteComments() {
 }
 
 function createMap() {
-  // Create a map with a dark color scheme centered at my hometown, Anaheim
+  // Create a map with a dark color scheme centered at my hometown, Anaheim.
   const map = new google.maps.Map(
       document.getElementById('map'), {
         center: {lat: 33.835982, lng: -117.914157},
@@ -162,7 +162,7 @@ function createMap() {
         ]
       });
 
-  // Variables starting with shabu will be referring to "Hose of Shabu Shabu II"
+  // Variables starting with shabu will be referring to "House of Shabu Shabu II".
   const shabuContentString = '<div id="shabu-content">'+
     '<h1 class="firstHeading">House of Shabu Shabu II</h1>'+
     '<div>'+
@@ -175,7 +175,7 @@ function createMap() {
     '</div>'+
     '</div>';
 
-  // Variables starting with boiling will be referring to "Boiling Point"
+  // Variables starting with boiling will be referring to "Boiling Point".
   const boilingContentString = '<div id="boiling-content">'+
     '<h1 class="firstHeading">Boiling Point</h1>'+
     '<div>'+
@@ -190,7 +190,7 @@ function createMap() {
     '</div>'+
     '</div>';
 
-  // Variables starting with in will be referring to "In n Out"
+  // Variables starting with in will be referring to "In n Out".
   const inContentString = '<div id="in-content">'+
     '<h1 class="firstHeading">In n Out</h1>'+
     '<div>'+
@@ -204,7 +204,7 @@ function createMap() {
     '</div>'+
     '</div>';
 
-  // Variables starting with clyde will be referring to "Clyde's Hot Chicken"
+  // Variables starting with clyde will be referring to "Clyde's Hot Chicken".
   const clydeContentString = '<div id="clyde-content">'+
     `<h1 class="firstHeading">Clyde's Hot Chicken</h1>`+
     '<div>'+
@@ -219,6 +219,7 @@ function createMap() {
     '</div>'+
     '</div>';
 
+  // Variables starting with porto will be referring to "Porto's Bakery".
   const portoContentString = '<div id="porto-content">'+
     `<h1 class="firstHeading">Porto's Bakery</h1>`+
     '<div>'+
