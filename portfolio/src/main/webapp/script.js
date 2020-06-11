@@ -70,7 +70,7 @@ function createMap() {
   const map = new google.maps.Map(
       document.getElementById('map'), {
       center: {lat: 33.835982, lng: -117.914157},
-        zoom: 10,
+        zoom: 11,
         styles: [
           {elementType: 'geometry', stylers: [{color: '#292929'}]},
           {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
