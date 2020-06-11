@@ -69,7 +69,7 @@ function createMap() {
   // Create a map with a dark color scheme centered at my hometown, Anaheim
   const map = new google.maps.Map(
       document.getElementById('map'), {
-      center: {lat: 33.835982, lng: -117.914157},
+        center: {lat: 33.835982, lng: -117.914157},
         zoom: 11,
         styles: [
           {elementType: 'geometry', stylers: [{color: '#292929'}]},
