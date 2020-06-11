@@ -39,13 +39,14 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/delete-data")
 public class DeleteServlet extends HttpServlet {
 
+  private static final DatastoreServiceConfig DEFAULT_DATASTORE_CONFIG =
+      DatastoreServiceConfig.Builder.withReadPolicy(new ReadPolicy(Consistency.STRONG)).deadline(5.0);
+
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query(Comment.ENTITY_NAME_PARAM);
-    
-    DatastoreServiceConfig datastoreConfig = DatastoreServiceConfig.Builder.withReadPolicy(
-      new ReadPolicy(Consistency.STRONG)).deadline(5.0);
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService(datastoreConfig);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService(DEFAULT_DATASTORE_CONFIG);
     PreparedQuery results = datastore.prepare(query);
 
     List<Key> keyList = keyListBuilder(results);

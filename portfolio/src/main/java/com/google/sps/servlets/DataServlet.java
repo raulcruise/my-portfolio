@@ -39,15 +39,15 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
+  private static final DatastoreServiceConfig DEFAULT_DATASTORE_CONFIG =
+      DatastoreServiceConfig.Builder.withReadPolicy(new ReadPolicy(Consistency.STRONG)).deadline(5.0);
   private static final int MIN_COMMENT_LIMIT = 5;
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query(Comment.ENTITY_NAME_PARAM).addSort(Comment.TIME_PARAM, SortDirection.DESCENDING);
-    
-    DatastoreServiceConfig datastoreConfig = DatastoreServiceConfig.Builder.withReadPolicy(
-      new ReadPolicy(Consistency.STRONG)).deadline(5.0);
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService(datastoreConfig);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService(DEFAULT_DATASTORE_CONFIG);
     PreparedQuery results = datastore.prepare(query);
 
     List<Comment> comments = new ArrayList<>();
