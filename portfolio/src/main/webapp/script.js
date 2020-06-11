@@ -72,9 +72,18 @@ function createMap() {
         center: {lat: 33.835982, lng: -117.914157},
         zoom: 11,
         styles: [
-          {elementType: 'geometry', stylers: [{color: '#292929'}]},
-          {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-          {elementType: 'labels.text.fill', stylers: [{color: '#ff6347'}]},
+          {
+            elementType: 'geometry',
+            stylers: [{color: '#292929'}]
+          },
+          {
+            elementType: 'labels.text.stroke',
+            stylers: [{color: '#242f3e'}]
+          },
+          {
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#ff6347'}]
+          },
           {
             featureType: 'administrative.locality',
             elementType: 'labels.text.fill',
