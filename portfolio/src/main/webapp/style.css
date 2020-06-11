@@ -73,12 +73,12 @@ body {
 }
 
 img.horizontal { /* Centered images are fit to the restraints of the other elements*/
-  border: 10px outset tomato;
+  border: 5px outset tomato;
   width: 65%;
 }
 
 img.horizontal-fill {
-  border: 8px outset tomato;
+  border: 5px outset tomato;
   width: 100%;
 }
 
@@ -111,6 +111,13 @@ img.vertical {
   right: 60px;
   top: 8px;
   width: 25px;
+}
+
+#map {
+  border: 5px outset tomato;
+  color: #292929;
+  height: 500px;
+  width: 100%;
 }
 
 .submit-btn {

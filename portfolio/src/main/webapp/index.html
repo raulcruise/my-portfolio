@@ -5,9 +5,10 @@
     <title>Raul's Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="images/ricon.png">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfTsJzjuHzHRh8jSy2KMvHFz1286HrG4I"></script>
     <script src="script.js"></script>
   </head>
-  <body onload="getComments()">
+  <body onload="getComments(); createMap();">
     <div class="top-bar">
       <ul>
         <li>Raul Cruz</li>
@@ -48,6 +49,7 @@
       <img class="horizontal-fill" src="images/snicker.jpg" alt="Picture of my dog">
       <button class="fact-btn" onclick="addRandomFact()">Fact!</button>
       <div id="fun-fact-container"></div>
+      <div id="map"></div>
       <form action="/data" method="POST">
         <h3>Comments:</h3>
         <textarea rows="4" id="comment-box" name="comment" placeholder="Say what you want"></textarea>
