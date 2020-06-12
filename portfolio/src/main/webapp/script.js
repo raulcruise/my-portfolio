@@ -188,7 +188,8 @@ function createMap() {
   const boilingContentString = '<div id="boiling-content">' +
       '<h1 class="firstHeading">Boiling Point</h1>' +
       '<div>' +
-      '<p><b>Boiling Point</b> is an establishment that specializes in <a href="' + hotPotWikiUrl + '">Taiwanese hot soup</a> cuisine. ' +
+      '<p><b>Boiling Point</b> is an establishment that specializes in <a href="' +
+      hotPotWikiUrl + '">Taiwanese hot soup</a> cuisine. ' +
       'I fell in love with this restaurant simply because of the delicious flavors that I ' +
       'experienced here, and the fact that you get to eat this hot soup ' +
       'while it is sitting over a flame so it stays nice and hot. ' +
@@ -202,10 +203,10 @@ function createMap() {
   const inContentString = '<div id="in-content">' +
       '<h1 class="firstHeading">In-n-Out Burger</h1>' +
       '<div>' +
-      '<p><b>In-n-Out</b> is a classic fast food chain that is dear to many in California and the Southwest. ' +
-      'There are many ongoing debates where groups debate whether this chain is better than other localized ' +
-      'chains such as Shake Shack from the East and Whataburger from Texas. Even though I often ' +
-      'decide to eat here, everytime I take a bite out of their cheeseburger I get ' +
+      '<p><b>In-n-Out</b> is a classic fast food chain that is dear to many in California and the ' +
+      'Southwest. There are many ongoing debates where groups debate whether this chain is better ' +
+      'than other localized chains such as Shake Shack from the East and Whataburger from Texas. ' +
+      'Even though I often decide to eat here, everytime I take a bite out of their cheeseburger I get ' +
       'the same experience that I remember having when I first tried it. </p> ' +
       '<p>Link: <a href="' + inNOutUrl + '">' + inNOutUrl + '</a></p> ' +
       '</div>' +
