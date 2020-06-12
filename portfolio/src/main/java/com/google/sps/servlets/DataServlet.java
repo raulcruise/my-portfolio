@@ -56,7 +56,7 @@ public class DataServlet extends HttpServlet {
     List<Comment> comments = new ArrayList<>();
 
     int commentLimit = getCommentLimit(request);
-    String languageCode = request.getParameter("lang");
+    String languageCode = getLanguageCode(request);
 
     results.asList(FetchOptions.Builder.withLimit(commentLimit)).forEach(entity -> {
       Comment comment = commentFromEntity(entity, languageCode);
@@ -104,5 +104,14 @@ public class DataServlet extends HttpServlet {
     String commentLimitString = request.getParameter("limit");
 
     return Math.max(Integer.parseInt(commentLimitString), MIN_COMMENT_LIMIT);
+  }
+
+  private String getLanguageCode(HttpServletRequest request) {
+    String languageCode = request.getParameter("lang");
+    if (languageCode == null) {
+      return "en";
+    } else {
+      return languageCode;
+    }
   }
 }
