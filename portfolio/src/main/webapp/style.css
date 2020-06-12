@@ -87,7 +87,8 @@ img.vertical {
   width: 21.6%;
 }
 
-#limit {
+#language-select,
+#limit-select {
   background-color: whitesmoke;
   border: none;
   color: #292929;
