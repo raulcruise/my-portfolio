@@ -40,10 +40,13 @@ function addRandomFact() {
 function getComments() {
   const selectElement = document.getElementById('limit');
   const commentLimit = selectElement.options[selectElement.selectedIndex].value;
-  fetch('/data?limit=' + commentLimit).then(response => response.json()).then((comments) => {
-    clearComments();
-    comments.forEach(addComment);
-  });
+  const languageSelect = document.getElementById('language');
+  const language = languageSelect.options[languageSelect.selectedIndex].value;
+  fetch('/data?limit=' + commentLimit + '&lang=' + language).then(
+      response => response.json()).then((comments) => {
+        clearComments();
+        comments.forEach(addComment);
+      });
 }
 
 function addComment(comment, index) {

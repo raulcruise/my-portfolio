@@ -25,6 +25,9 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.datastore.ReadPolicy;
 import com.google.appengine.api.datastore.ReadPolicy.Consistency;
+import com.google.cloud.translate.Translate;
+import com.google.cloud.translate.TranslateOptions;
+import com.google.cloud.translate.Translation;
 import com.google.gson.*;
 import com.google.sps.data.Comment;
 import java.io.IOException;
@@ -53,9 +56,10 @@ public class DataServlet extends HttpServlet {
     List<Comment> comments = new ArrayList<>();
 
     int commentLimit = getCommentLimit(request);
+    String languageCode = request.getParameter("lang");
 
     results.asList(FetchOptions.Builder.withLimit(commentLimit)).forEach(entity -> {
-      Comment comment = commentFromEntity(entity);
+      Comment comment = commentFromEntity(entity, languageCode);
       comments.add(comment);
     });
 
@@ -82,11 +86,17 @@ public class DataServlet extends HttpServlet {
     response.sendRedirect("/index.html#comment-container");
   }
 
-  private Comment commentFromEntity(Entity entity) {
+  private Comment commentFromEntity(Entity entity, String languageCode) {
     String text = (String) entity.getProperty(Comment.TEXT_PARAM);
     long timestampMillis = (long) entity.getProperty(Comment.TIME_PARAM);
 
-    Comment comment = new Comment(text, timestampMillis);
+    // Do the translation.
+    Translate translate = TranslateOptions.getDefaultInstance().getService();
+    Translation translation =
+        translate.translate(text, Translate.TranslateOption.targetLanguage(languageCode));
+    String translatedText = translation.getTranslatedText();
+
+    Comment comment = new Comment(translatedText, timestampMillis);
     return comment;
   }
 
