@@ -38,9 +38,9 @@ function addRandomFact() {
 }
 
 function getComments() {
-  const selectElement = document.getElementById('limit');
+  const selectElement = document.getElementById('limit-select');
   const commentLimit = selectElement.options[selectElement.selectedIndex].value;
-  const languageSelect = document.getElementById('language');
+  const languageSelect = document.getElementById('language-select');
   const language = languageSelect.options[languageSelect.selectedIndex].value;
   fetch('/data?limit=' + commentLimit + '&lang=' + language).then(
       response => response.json()).then((comments) => {
