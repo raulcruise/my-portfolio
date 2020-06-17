@@ -27,11 +27,11 @@ public final class FindMeetingQuery {
     long meetingDuration = request.getDuration();
 
     if (meetingDuration > TimeRange.WHOLE_DAY.duration()) {
-        return Collections.emptyList();
+      return Collections.emptyList();
     }
 
     if (request.getAttendees().isEmpty() && request.getOptionalAttendees().isEmpty()) {
-        return Arrays.asList(TimeRange.WHOLE_DAY);
+      return Arrays.asList(TimeRange.WHOLE_DAY);
     }
    
     List<TimeRange> unavailableTimeRanges = getUnavailableTimeRanges(events, mandatoryAttendees);
@@ -119,7 +119,7 @@ public final class FindMeetingQuery {
 
   private List<TimeRange> getAvailableTimeRanges(List<TimeRange> unavailableTimeRanges, long duration) {
     if (unavailableTimeRanges.isEmpty()) {
-        return Arrays.asList(TimeRange.WHOLE_DAY);
+      return Arrays.asList(TimeRange.WHOLE_DAY);
     }
 
     Collections.sort(unavailableTimeRanges, TimeRange.ORDER_BY_START);
@@ -136,11 +136,11 @@ public final class FindMeetingQuery {
     
     int i;
     for (i = 0; i < unavailableTimeRanges.size() - 1; i++) {
-        if(enoughTimeBetween(unavailableTimeRanges.get(i), unavailableTimeRanges.get(i + 1), duration)) {
-          availableTimeRanges.add(TimeRange.fromStartEnd(
-              unavailableTimeRanges.get(i).end(),
-              unavailableTimeRanges.get(i + 1).start(),
-              false
+      if(enoughTimeBetween(unavailableTimeRanges.get(i), unavailableTimeRanges.get(i + 1), duration)) {
+        availableTimeRanges.add(TimeRange.fromStartEnd(
+            unavailableTimeRanges.get(i).end(),
+            unavailableTimeRanges.get(i + 1).start(),
+            false
           ));
         }
     }
@@ -185,9 +185,9 @@ public final class FindMeetingQuery {
       // ends first since the timeRange which ends later can be merged with
       // another or multiple other timeRanges.
       if (mandatoryRange.end() >= optionalRange.end()) {
-          j++;
+        j++;
       } else {
-          i++;
+        i++;
       }
     }
 
