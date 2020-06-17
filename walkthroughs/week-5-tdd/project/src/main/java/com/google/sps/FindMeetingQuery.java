@@ -78,7 +78,7 @@ public final class FindMeetingQuery {
     return unavailableTimeRanges;
   }
 
-  private boolean mergeOnOverlap(Collection<TimeRange>timeRanges, TimeRange newTimeRange) {
+  private boolean mergeOnOverlap(Collection<TimeRange> timeRanges, TimeRange newTimeRange) {
     // The default value is set to false, which is converted to true if a merge takes place.
     boolean overlaps = false;
 
@@ -194,7 +194,7 @@ public final class FindMeetingQuery {
     return combined;
   }
 
-   private boolean enoughTimeBetween(TimeRange firstTime, TimeRange nextTime, long duration) {
+  private boolean enoughTimeBetween(TimeRange firstTime, TimeRange nextTime, long duration) {
     return (nextTime.start() - firstTime.end()) >= duration;
   }
 }
