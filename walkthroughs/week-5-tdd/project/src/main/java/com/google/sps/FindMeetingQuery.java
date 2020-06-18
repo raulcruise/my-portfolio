@@ -34,8 +34,10 @@ public final class FindMeetingQuery {
       return Arrays.asList(TimeRange.WHOLE_DAY);
     }
    
-    List<TimeRange> unavailableTimeRanges = getUnavailableTimeRanges(events, mandatoryAttendees);
-    List<TimeRange> availableTimeRanges = getAvailableTimeRanges(unavailableTimeRanges, meetingDurationMinutes);
+    List<TimeRange> unavailableMandatoryTimeRanges = getUnavailableTimeRanges(
+        events, mandatoryAttendees);
+    List<TimeRange> availableMandatoryTimeRanges = getAvailableTimeRanges(
+        unavailableMandatoryTimeRanges, meetingDurationMinutes);
 
     List<TimeRange> unavailableOptionalTimeRanges = getUnavailableTimeRanges(events, optionalAttendees);
     List<TimeRange> availableOptionalTimeRanges = getAvailableTimeRanges(
@@ -46,7 +48,8 @@ public final class FindMeetingQuery {
     } else if (request.getOptionalAttendees().isEmpty() || availableOptionalTimeRanges.isEmpty()) {
       return availableTimeRanges;
     } else {
-      return mergeAvailableTimeRanges(availableTimeRanges, availableOptionalTimeRanges, meetingDurationMinutes);
+      return mergeAvailableTimeRanges(
+          availableMandatoryTimeRanges, availableOptionalTimeRanges, meetingDurationMinutes);
     }
 }
 
