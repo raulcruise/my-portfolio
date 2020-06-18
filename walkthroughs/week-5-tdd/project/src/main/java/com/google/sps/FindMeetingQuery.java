@@ -143,8 +143,7 @@ public final class FindMeetingQuery {
           /* inclusive = */ false));
     }
     
-    int i;
-    for (i = 0; i < unavailableTimeRanges.size() - 1; i++) {
+    for (int i = 0; i < unavailableTimeRanges.size() - 1; i++) {
       if(enoughTimeBetween(unavailableTimeRanges.get(i), unavailableTimeRanges.get(i + 1), durationMinutes)) {
         availableTimeRanges.add(TimeRange.fromStartEnd(
             unavailableTimeRanges.get(i).end(),
@@ -154,7 +153,9 @@ public final class FindMeetingQuery {
     }
 
     // Check for available time at the end of the day.
-    int timeAfterLastMeeting = TimeRange.WHOLE_DAY.end() - unavailableTimeRanges.get(i).end();
+    int timeAfterLastMeeting = TimeRange.WHOLE_DAY.end() 
+        - unavailableTimeRanges.get(unavailableTimeRanges.size() - 1).end();
+
     if (timeAfterLastMeeting >= durationMinutes) {
       availableTimeRanges.add(TimeRange.fromStartEnd(
           unavailableTimeRanges.get(unavailableTimeRanges.size() - 1).end(),
