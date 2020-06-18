@@ -24,9 +24,9 @@ public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
     Collection<String> mandatoryAttendees = request.getAttendees();
     Collection<String> optionalAttendees = request.getOptionalAttendees();
-    long meetingDuration = request.getDuration();
+    long meetingDurationMinutes = request.getDuration();
 
-    if (meetingDuration > TimeRange.WHOLE_DAY.duration()) {
+    if (meetingDurationMinutes > TimeRange.WHOLE_DAY.duration()) {
       return Collections.emptyList();
     }
 
@@ -35,18 +35,18 @@ public final class FindMeetingQuery {
     }
    
     List<TimeRange> unavailableTimeRanges = getUnavailableTimeRanges(events, mandatoryAttendees);
-    List<TimeRange> availableTimeRanges = getAvailableTimeRanges(unavailableTimeRanges, meetingDuration);
+    List<TimeRange> availableTimeRanges = getAvailableTimeRanges(unavailableTimeRanges, meetingDurationMinutes);
 
     List<TimeRange> unavailableOptionalTimeRanges = getUnavailableTimeRanges(events, optionalAttendees);
     List<TimeRange> availableOptionalTimeRanges = getAvailableTimeRanges(
-        unavailableOptionalTimeRanges, meetingDuration);
+        unavailableOptionalTimeRanges, meetingDurationMinutes);
     
     if (request.getAttendees().isEmpty()) {
       return availableOptionalTimeRanges;
     } else if (request.getOptionalAttendees().isEmpty() || availableOptionalTimeRanges.isEmpty()) {
       return availableTimeRanges;
     } else {
-      return mergeAvailableTimeRanges(availableTimeRanges, availableOptionalTimeRanges, meetingDuration);
+      return mergeAvailableTimeRanges(availableTimeRanges, availableOptionalTimeRanges, meetingDurationMinutes);
     }
 }
 
@@ -117,7 +117,7 @@ public final class FindMeetingQuery {
     return mergedTimeRange;
   }
 
-  private List<TimeRange> getAvailableTimeRanges(List<TimeRange> unavailableTimeRanges, long duration) {
+  private List<TimeRange> getAvailableTimeRanges(List<TimeRange> unavailableTimeRanges, long durationMinutes) {
     if (unavailableTimeRanges.isEmpty()) {
       return Arrays.asList(TimeRange.WHOLE_DAY);
     }
@@ -126,7 +126,7 @@ public final class FindMeetingQuery {
     List<TimeRange> availableTimeRanges = new ArrayList<>();
 
     // Check for available time starting at the beginning of the day.
-    if (unavailableTimeRanges.get(0).start() >= duration) {
+    if (unavailableTimeRanges.get(0).start() >= durationMinutes) {
       availableTimeRanges.add(TimeRange.fromStartEnd(
           TimeRange.WHOLE_DAY.start(),
           unavailableTimeRanges.get(0).start(),
@@ -136,7 +136,7 @@ public final class FindMeetingQuery {
     
     int i;
     for (i = 0; i < unavailableTimeRanges.size() - 1; i++) {
-      if(enoughTimeBetween(unavailableTimeRanges.get(i), unavailableTimeRanges.get(i + 1), duration)) {
+      if(enoughTimeBetween(unavailableTimeRanges.get(i), unavailableTimeRanges.get(i + 1), durationMinutes)) {
         availableTimeRanges.add(TimeRange.fromStartEnd(
             unavailableTimeRanges.get(i).end(),
             unavailableTimeRanges.get(i + 1).start(),
@@ -147,7 +147,7 @@ public final class FindMeetingQuery {
 
     // Check for available time at the end of the day.
     int timeAfterLastMeeting = TimeRange.WHOLE_DAY.end() - unavailableTimeRanges.get(i).end();
-    if (timeAfterLastMeeting >= duration) {
+    if (timeAfterLastMeeting >= durationMinutes) {
       availableTimeRanges.add(TimeRange.fromStartEnd(
           unavailableTimeRanges.get(unavailableTimeRanges.size() - 1).end(),
           TimeRange.WHOLE_DAY.end(),
@@ -159,7 +159,7 @@ public final class FindMeetingQuery {
   }
 
   private List<TimeRange> mergeAvailableTimeRanges(
-      List<TimeRange> mandatory, List<TimeRange> optional, long duration) {
+      List<TimeRange> mandatory, List<TimeRange> optional, long durationMinutes) {
     List<TimeRange> combined = new ArrayList<>();
     int i = 0;
     int j = 0;
@@ -172,7 +172,7 @@ public final class FindMeetingQuery {
         int rangeStart = Math.max(mandatoryRange.start(), optionalRange.start());
         int rangeEnd = Math.min(mandatoryRange.end(), optionalRange.end());
       
-        if (rangeEnd - rangeStart >= duration) {
+        if (rangeEnd - rangeStart >= durationMinutes) {
           combined.add(TimeRange.fromStartEnd(
               rangeStart,
               rangeEnd,
@@ -194,7 +194,7 @@ public final class FindMeetingQuery {
     return combined;
   }
 
-  private boolean enoughTimeBetween(TimeRange firstTime, TimeRange nextTime, long duration) {
-    return (nextTime.start() - firstTime.end()) >= duration;
+  private boolean enoughTimeBetween(TimeRange firstTime, TimeRange nextTime, long durationMinutes) {
+    return (nextTime.start() - firstTime.end()) >= durationMinutes;
   }
 }
