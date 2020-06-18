@@ -70,9 +70,9 @@ public final class FindMeetingQuery {
     // (from Collection<String> attendees, then we add the event's TimeRange to a list.
     events.forEach(
         event -> {
-          Collection<String> eventAttendants = event.getAttendees();
+          Collection<String> eventAttendees = event.getAttendees();
 
-          for (String attendee : eventAttendants) {
+          for (String attendee : eventAttendees) {
             if (attendees.contains(attendee)) {
               TimeRange currentEventTimeRange = event.getWhen();
 
