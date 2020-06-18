@@ -92,7 +92,7 @@ public final class FindMeetingQuery {
 
   private boolean mergeOnOverlap(Collection<TimeRange> timeRanges, TimeRange newTimeRange) {
     // The default value is set to false, which is converted to true if a merge takes place.
-    boolean overlaps = false;
+    boolean doOverlap = false;
 
     // Store items that we will add and remove from the collection after we finish iterating
     // through it in order to avoid ConcurrentModificationException from being thrown.
@@ -104,7 +104,7 @@ public final class FindMeetingQuery {
         TimeRange combinedTimeRange = mergeTimeRanges(newTimeRange, takenTimeRange);
         toRemove.add(takenTimeRange);
         toAdd.add(combinedTimeRange);
-        overlaps = true;
+        doOverlap = true;
       }
     }
 
