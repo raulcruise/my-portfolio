@@ -26,27 +26,35 @@ public final class FindMeetingQuery {
     Collection<String> optionalAttendees = request.getOptionalAttendees();
     long meetingDurationMinutes = request.getDuration();
 
+    // If the meeting duration is over 24 hours, then return no available timeRange
     if (meetingDurationMinutes > TimeRange.WHOLE_DAY.duration()) {
       return Collections.emptyList();
     }
 
+    // If no Attendees are passed in, return a timeRange containing the whole day
     if (request.getAttendees().isEmpty() && request.getOptionalAttendees().isEmpty()) {
       return Arrays.asList(TimeRange.WHOLE_DAY);
     }
    
+   // Store unavailable TimeRanges for mandatory and optional attendees separately
     List<TimeRange> unavailableMandatoryTimeRanges = getUnavailableTimeRanges(
         events, mandatoryAttendees);
+    List<TimeRange> unavailableOptionalTimeRanges = getUnavailableTimeRanges(events, optionalAttendees);
+
+    // Get available TimeRanges from unavailable TimeRanges
     List<TimeRange> availableMandatoryTimeRanges = getAvailableTimeRanges(
         unavailableMandatoryTimeRanges, meetingDurationMinutes);
-
-    List<TimeRange> unavailableOptionalTimeRanges = getUnavailableTimeRanges(events, optionalAttendees);
     List<TimeRange> availableOptionalTimeRanges = getAvailableTimeRanges(
         unavailableOptionalTimeRanges, meetingDurationMinutes);
-    
-    if (request.getAttendees().isEmpty()) {
+
+    // If no mandatory attendees are passed, return the available TimeRanges for optional attendees
+    // else if no optional attendees are passed, or no TimeRanges are available for optiona attendees
+    // then return available TimeRanges for mandatory attendees, else merge the available TimeRanges
+    // for mandatory attendees with available TimeRanges for optional employees
+    if (mandatoryAttendees.isEmpty()) {
       return availableOptionalTimeRanges;
-    } else if (request.getOptionalAttendees().isEmpty() || availableOptionalTimeRanges.isEmpty()) {
-      return availableTimeRanges;
+    } else if (optionalAttendees.isEmpty() || availableOptionalTimeRanges.isEmpty()) {
+      return availableMandatoryTimeRanges;
     } else {
       return mergeAvailableTimeRanges(
           availableMandatoryTimeRanges, availableOptionalTimeRanges, meetingDurationMinutes);
