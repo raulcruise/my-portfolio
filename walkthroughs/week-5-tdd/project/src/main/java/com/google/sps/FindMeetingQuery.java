@@ -26,33 +26,32 @@ public final class FindMeetingQuery {
     Collection<String> optionalAttendees = request.getOptionalAttendees();
     long meetingDurationMinutes = request.getDuration();
 
-    // If the meeting duration is over 24 hours, then return no available timeRange
+    // If the meeting duration is over 24 hours, then return no available timeRange.
     if (meetingDurationMinutes > TimeRange.WHOLE_DAY.duration()) {
       return Collections.emptyList();
     }
 
-    // If no Attendees are passed in, return a timeRange containing the whole day
+    // If no Attendees are passed in, return a timeRange containing the whole day.
     if (request.getAttendees().isEmpty() && request.getOptionalAttendees().isEmpty()) {
       return Arrays.asList(TimeRange.WHOLE_DAY);
     }
 
-    // Store unavailable TimeRanges for mandatory and optional attendees separately
+    // Store unavailable TimeRanges for mandatory and optional attendees separately.
     List<TimeRange> unavailableMandatoryTimeRanges =
         getUnavailableTimeRanges(events, mandatoryAttendees);
     List<TimeRange> unavailableOptionalTimeRanges =
         getUnavailableTimeRanges(events, optionalAttendees);
 
-    // Get available TimeRanges from unavailable TimeRanges
+    // Get available TimeRanges from unavailable TimeRanges.
     List<TimeRange> availableMandatoryTimeRanges =
         getAvailableTimeRanges(unavailableMandatoryTimeRanges, meetingDurationMinutes);
     List<TimeRange> availableOptionalTimeRanges =
         getAvailableTimeRanges(unavailableOptionalTimeRanges, meetingDurationMinutes);
 
     // If no mandatory attendees are passed, return the available TimeRanges for optional attendees
-    // else if no optional attendees are passed, or no TimeRanges are available for optiona
-    // attendees
-    // then return available TimeRanges for mandatory attendees, else merge the available TimeRanges
-    // for mandatory attendees with available TimeRanges for optional employees
+    // else if no optional attendees are passed, or no TimeRanges are available for optional
+    // attendees then return available TimeRanges for mandatory attendees, else merge the available
+    // TimeRanges for mandatory attendees with available TimeRanges for optional employees.
     if (mandatoryAttendees.isEmpty()) {
       return availableOptionalTimeRanges;
     } else if (optionalAttendees.isEmpty() || availableOptionalTimeRanges.isEmpty()) {
@@ -96,7 +95,7 @@ public final class FindMeetingQuery {
     boolean overlaps = false;
 
     // Store items that we will add and remove from the collection after we finish iterating
-    // through it in order to avoid ConcurrentModificationException from being thrown
+    // through it in order to avoid ConcurrentModificationException from being thrown.
     List<TimeRange> toRemove = new ArrayList<>();
     List<TimeRange> toAdd = new ArrayList<>();
 
@@ -184,7 +183,7 @@ public final class FindMeetingQuery {
       TimeRange mandatoryRange = mandatory.get(i);
       TimeRange optionalRange = optional.get(j);
 
-      // Start by comparing the first two TimeRanges
+      // Start by comparing the first two TimeRanges.
       if (mandatoryRange.overlaps(optionalRange)) {
         int rangeStart = Math.max(mandatoryRange.start(), optionalRange.start());
         int rangeEnd = Math.min(mandatoryRange.end(), optionalRange.end());
