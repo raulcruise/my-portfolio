@@ -114,7 +114,7 @@ public final class FindMeetingQuery {
     TimeRange mergedTimeRange = TimeRange.fromStartEnd(
         Math.min(firstTimeRange.start(), secondTimeRange.start()),
         Math.max(firstTimeRange.end(), secondTimeRange.end()),
-        false);
+        /* inclusive = */ false);
 
     return mergedTimeRange;
   }
@@ -132,7 +132,7 @@ public final class FindMeetingQuery {
       availableTimeRanges.add(TimeRange.fromStartEnd(
           TimeRange.WHOLE_DAY.start(),
           unavailableTimeRanges.get(0).start(),
-          false));
+          /* inclusive = */ false));
     }
     
     int i;
@@ -141,7 +141,7 @@ public final class FindMeetingQuery {
         availableTimeRanges.add(TimeRange.fromStartEnd(
             unavailableTimeRanges.get(i).end(),
             unavailableTimeRanges.get(i + 1).start(),
-            false));
+            /* inclusive = */ false));
         }
     }
 
@@ -151,7 +151,7 @@ public final class FindMeetingQuery {
       availableTimeRanges.add(TimeRange.fromStartEnd(
           unavailableTimeRanges.get(unavailableTimeRanges.size() - 1).end(),
           TimeRange.WHOLE_DAY.end(),
-          false));
+          /* inclusive = */ false));
     }
 
     return availableTimeRanges;
@@ -175,7 +175,7 @@ public final class FindMeetingQuery {
           combined.add(TimeRange.fromStartEnd(
               rangeStart,
               rangeEnd,
-              false));
+              /* inclusive = */ false));
         }
       }
       
