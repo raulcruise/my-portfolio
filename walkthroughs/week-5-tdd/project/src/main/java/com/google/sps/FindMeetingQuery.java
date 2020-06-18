@@ -52,9 +52,9 @@ public final class FindMeetingQuery {
           availableMandatoryTimeRanges, availableOptionalTimeRanges, meetingDurationMinutes);
     }
 }
-
-  // Return a List of TimeRanges containing all TimeRanges that are
-  // unavailable in as little TimeRanges as possible.
+  /**
+   * Returns a List of TimeRanges that are unavailable in as little TimeRanges as possible.
+   */
   private List<TimeRange> getUnavailableTimeRanges(Collection<Event> events, Collection<String> attendees) {
     List<TimeRange> unavailableTimeRanges = new ArrayList<>();
 
