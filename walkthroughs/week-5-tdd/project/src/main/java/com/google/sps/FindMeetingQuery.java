@@ -74,17 +74,19 @@ public final class FindMeetingQuery {
           Collection<String> eventAttendees = event.getAttendees();
 
           for (String attendee : eventAttendees) {
-            if (attendees.contains(attendee)) {
-              TimeRange currentEventTimeRange = event.getWhen();
-
-              // If the currentEventTimeRange isn't merged into a TimeRange within the
-              // unavailableTimeRanges list, then add the currentEventTimeRange to the list.
-              if (!mergeOnOverlap(unavailableTimeRanges, currentEventTimeRange)) {
-                unavailableTimeRanges.add(currentEventTimeRange);
-              }
-
-              break;
+            if (!attendees.contains(attendee)) {
+              continue;
             }
+
+            TimeRange currentEventTimeRange = event.getWhen();
+
+            // If the currentEventTimeRange isn't merged into a TimeRange within the
+            // unavailableTimeRanges list, then add the currentEventTimeRange to the list.
+            if (!mergeOnOverlap(unavailableTimeRanges, currentEventTimeRange)) {
+              unavailableTimeRanges.add(currentEventTimeRange);
+            }
+
+            break;
           }
         });
 
@@ -121,7 +123,7 @@ public final class FindMeetingQuery {
       timeRanges.add(timeRange);
     }
 
-    return overlaps;
+    return doOverlap;
   }
 
   private TimeRange mergeTimeRanges(TimeRange firstTimeRange, TimeRange secondTimeRange) {
