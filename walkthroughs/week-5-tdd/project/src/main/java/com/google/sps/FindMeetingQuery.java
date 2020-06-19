@@ -61,6 +61,7 @@ public final class FindMeetingQuery {
           availableMandatoryTimeRanges, availableOptionalTimeRanges, meetingDurationMinutes);
     }
   }
+
   /** Returns a List of TimeRanges that are unavailable in as little TimeRanges as possible. */
   private List<TimeRange> getUnavailableTimeRanges(
       Collection<Event> events, Collection<String> attendees) {
@@ -90,6 +91,10 @@ public final class FindMeetingQuery {
     return unavailableTimeRanges;
   }
 
+  /**
+   * Returns whether a merge has ocurred or not and modifies the Collection of TimeRanges to include
+   * a merged TimeRange where the newTimeRange overlaps with the passed Collection.
+   */
   private boolean mergeOnOverlap(Collection<TimeRange> timeRanges, TimeRange newTimeRange) {
     // The default value is set to false, which is converted to true if a merge takes place.
     boolean doOverlap = false;
