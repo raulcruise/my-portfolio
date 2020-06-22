@@ -18,13 +18,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
     Collection<String> mandatoryAttendees = request.getAttendees();
     Collection<String> optionalAttendees = request.getOptionalAttendees();
     long meetingDurationMinutes = request.getDuration();
+
+    Set<String> bothAttendees = new HashSet<String>();
+    bothAttendees.addAll(mandatoryAttendees);
+    bothAttendees.addAll(optionalAttendees);
 
     // If the meeting duration is over 24 hours, then return no available timeRange.
     if (meetingDurationMinutes > TimeRange.WHOLE_DAY.duration()) {
@@ -36,11 +42,10 @@ public final class FindMeetingQuery {
       return Arrays.asList(TimeRange.WHOLE_DAY);
     }
 
-    // Store unavailable TimeRanges for mandatory and optional attendees separately.
+    // Store unavailable TimeRanges for mandatory and mandatory + optional attendees separately.
     List<TimeRange> unavailableMandatoryTimeRanges =
         getUnavailableTimeRanges(events, mandatoryAttendees);
-    List<TimeRange> unavailableOptionalTimeRanges =
-        getUnavailableTimeRanges(events, optionalAttendees);
+    List<TimeRange> unavailableOptionalTimeRanges = getUnavailableTimeRanges(events, bothAttendees);
 
     // Get available TimeRanges from unavailable TimeRanges.
     List<TimeRange> availableMandatoryTimeRanges =
@@ -48,17 +53,13 @@ public final class FindMeetingQuery {
     List<TimeRange> availableOptionalTimeRanges =
         getAvailableTimeRanges(unavailableOptionalTimeRanges, meetingDurationMinutes);
 
-    // If no mandatory attendees are passed, return the available TimeRanges for optional attendees
-    // else if no optional attendees are passed, or no TimeRanges are available for optional
-    // attendees then return available TimeRanges for mandatory attendees, else merge the available
-    // TimeRanges for mandatory attendees with available TimeRanges for optional employees.
-    if (mandatoryAttendees.isEmpty()) {
-      return availableOptionalTimeRanges;
-    } else if (optionalAttendees.isEmpty() || availableOptionalTimeRanges.isEmpty()) {
+    // If the List of available TimeRanges when including optional attendees is empty,
+    // and mandatory attendees were passed in, then return availableMandatoryTimeRanges.
+    // Else return availableOptionalTimeRanges.
+    if (availableOptionalTimeRanges.isEmpty() && !mandatoryAttendees.isEmpty()) {
       return availableMandatoryTimeRanges;
     } else {
-      return mergeAvailableTimeRanges(
-          availableMandatoryTimeRanges, availableOptionalTimeRanges, meetingDurationMinutes);
+      return availableOptionalTimeRanges;
     }
   }
 
@@ -179,38 +180,6 @@ public final class FindMeetingQuery {
     }
 
     return availableTimeRanges;
-  }
-
-  private List<TimeRange> mergeAvailableTimeRanges(
-      List<TimeRange> mandatory, List<TimeRange> optional, long durationMinutes) {
-    List<TimeRange> combined = new ArrayList<>();
-    int i = 0;
-    int j = 0;
-    while (i < mandatory.size() && j < optional.size()) {
-      TimeRange mandatoryRange = mandatory.get(i);
-      TimeRange optionalRange = optional.get(j);
-
-      // Start by comparing the first two TimeRanges.
-      if (mandatoryRange.overlaps(optionalRange)) {
-        int rangeStart = Math.max(mandatoryRange.start(), optionalRange.start());
-        int rangeEnd = Math.min(mandatoryRange.end(), optionalRange.end());
-
-        if (rangeEnd - rangeStart >= durationMinutes) {
-          combined.add(TimeRange.fromStartEnd(rangeStart, rangeEnd, /* inclusive = */ false));
-        }
-      }
-
-      // Move to the next index depending on which lists' current timeRange
-      // ends first since the timeRange which ends later can be merged with
-      // another or multiple other timeRanges.
-      if (mandatoryRange.end() >= optionalRange.end()) {
-        j++;
-      } else {
-        i++;
-      }
-    }
-
-    return combined;
   }
 
   private boolean enoughTimeBetween(TimeRange firstTime, TimeRange nextTime, long durationMinutes) {
