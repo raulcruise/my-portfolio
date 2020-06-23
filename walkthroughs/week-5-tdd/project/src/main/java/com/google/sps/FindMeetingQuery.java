@@ -100,20 +100,17 @@ public final class FindMeetingQuery {
    * a merged TimeRange where the newTimeRange overlaps with the passed Collection.
    */
   private void mergeOnOverlap(Collection<TimeRange> timeRanges, TimeRange newTimeRange) {
-    // The default value is set to false, which is converted to true if a merge takes place.
-    boolean doOverlap = false;
-
-    // Store items that we will add and remove from the collection after we finish iterating
+    // Store items that we will remove from the collection after we finish iterating
     // through it in order to avoid ConcurrentModificationException from being thrown.
     List<TimeRange> toRemove = new ArrayList<>();
-    List<TimeRange> toAdd = new ArrayList<>();
 
+    // Iterate through each TimeRange in timeRanges and if any overlap with the
+    // the newTimeRange, then merge them together, store the merged TimeRange as the
+    // newTimeRange, and remove the timeRange from timeRanges that was merged.
     for (TimeRange takenTimeRange : timeRanges) {
       if (newTimeRange.overlaps(takenTimeRange)) {
-        TimeRange combinedTimeRange = mergeTimeRanges(newTimeRange, takenTimeRange);
+        newTimeRange = mergeTimeRanges(newTimeRange, takenTimeRange);
         toRemove.add(takenTimeRange);
-        toAdd.add(combinedTimeRange);
-        doOverlap = true;
       }
     }
 
@@ -121,15 +118,9 @@ public final class FindMeetingQuery {
       timeRanges.remove(timeRange);
     }
 
-    for (TimeRange timeRange : toAdd) {
-      timeRanges.add(timeRange);
-    }
-
-    // If the newTimeRange isn't merged into a TimeRange within the
-    // timeRanges list, then add the newTimeRange to the list.
-    if (!doOverlap) {
-      timeRanges.add(newTimeRange);
-    }
+    // Add the newTimeRange either as the original value that was passed in, or merged with
+    // overlapping ranges.
+    timeRanges.add(newTimeRange);
   }
 
   private TimeRange mergeTimeRanges(TimeRange firstTimeRange, TimeRange secondTimeRange) {
