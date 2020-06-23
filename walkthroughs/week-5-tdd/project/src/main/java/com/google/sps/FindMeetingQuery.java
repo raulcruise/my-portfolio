@@ -137,6 +137,11 @@ public final class FindMeetingQuery {
     return mergedTimeRange;
   }
 
+  /**
+   * Returns available timeRanges as a List by sorting unavailableTimeRanges by start time and
+   * adding each gap between each timeRange to the List which will be returned. The List that was
+   * passed in will be modified.
+   */
   private List<TimeRange> getAvailableTimeRanges(
       List<TimeRange> unavailableTimeRanges, long durationMinutes) {
     if (unavailableTimeRanges.isEmpty()) {
