@@ -68,6 +68,11 @@ public final class FindMeetingQuery {
       Collection<Event> events, Collection<String> attendees) {
     List<TimeRange> unavailableTimeRanges = new ArrayList<>();
 
+    // Convert the Collection of attendeese into a hash set in order to make each check
+    // for a certain attendee O(1).
+    Set<String> attendeeList = new HashSet<String>();
+    attendeeList.addAll(attendees);
+
     // If an event's attendee list contains a names of an attendee that needs to attend
     // (from Collection<String> attendees, then we add the event's TimeRange to a list.
     events.forEach(
