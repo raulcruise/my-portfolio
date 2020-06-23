@@ -81,11 +81,7 @@ public final class FindMeetingQuery {
 
             TimeRange currentEventTimeRange = event.getWhen();
 
-            // If the currentEventTimeRange isn't merged into a TimeRange within the
-            // unavailableTimeRanges list, then add the currentEventTimeRange to the list.
-            if (!mergeOnOverlap(unavailableTimeRanges, currentEventTimeRange)) {
-              unavailableTimeRanges.add(currentEventTimeRange);
-            }
+            mergeOnOverlap(unavailableTimeRanges, currentEventTimeRange);
 
             break;
           }
@@ -98,7 +94,7 @@ public final class FindMeetingQuery {
    * Returns whether a merge has ocurred or not and modifies the Collection of TimeRanges to include
    * a merged TimeRange where the newTimeRange overlaps with the passed Collection.
    */
-  private boolean mergeOnOverlap(Collection<TimeRange> timeRanges, TimeRange newTimeRange) {
+  private void mergeOnOverlap(Collection<TimeRange> timeRanges, TimeRange newTimeRange) {
     // The default value is set to false, which is converted to true if a merge takes place.
     boolean doOverlap = false;
 
@@ -124,7 +120,11 @@ public final class FindMeetingQuery {
       timeRanges.add(timeRange);
     }
 
-    return doOverlap;
+    // If the newTimeRange isn't merged into a TimeRange within the
+    // timeRanges list, then add the newTimeRange to the list.
+    if (!doOverlap) {
+      timeRanges.add(newTimeRange);
+    }
   }
 
   private TimeRange mergeTimeRanges(TimeRange firstTimeRange, TimeRange secondTimeRange) {
