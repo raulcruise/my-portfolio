@@ -145,6 +145,7 @@ public final class FindMeetingQuery {
 
     Collections.sort(unavailableTimeRanges, TimeRange.ORDER_BY_START);
     List<TimeRange> availableTimeRanges = new ArrayList<>();
+    int lastListIndex = unavailableTimeRanges.size() - 1;
 
     // Check for available time starting at the beginning of the day.
     if (unavailableTimeRanges.get(0).start() >= durationMinutes) {
@@ -155,7 +156,7 @@ public final class FindMeetingQuery {
               /* inclusive = */ false));
     }
 
-    for (int i = 0; i < unavailableTimeRanges.size() - 1; i++) {
+    for (int i = 0; i < lastListIndex; i++) {
       if (enoughTimeBetween(
           unavailableTimeRanges.get(i), unavailableTimeRanges.get(i + 1), durationMinutes)) {
         availableTimeRanges.add(
@@ -168,13 +169,12 @@ public final class FindMeetingQuery {
 
     // Check for available time at the end of the day.
     int timeAfterLastMeeting =
-        TimeRange.WHOLE_DAY.end()
-            - unavailableTimeRanges.get(unavailableTimeRanges.size() - 1).end();
+        TimeRange.WHOLE_DAY.end() - unavailableTimeRanges.get(lastListIndex).end();
 
     if (timeAfterLastMeeting >= durationMinutes) {
       availableTimeRanges.add(
           TimeRange.fromStartEnd(
-              unavailableTimeRanges.get(unavailableTimeRanges.size() - 1).end(),
+              unavailableTimeRanges.get(lastListIndex).end(),
               TimeRange.WHOLE_DAY.end(),
               /* inclusive = */ false));
     }
