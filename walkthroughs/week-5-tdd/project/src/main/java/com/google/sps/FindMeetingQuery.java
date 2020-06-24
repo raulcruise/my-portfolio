@@ -134,9 +134,9 @@ public final class FindMeetingQuery {
   }
 
   /**
-   * Returns available timeRanges as a List by sorting unavailableTimeRanges by start time and
-   * adding each gap between each timeRange to the List which will be returned. The List that was
-   * passed in will be modified.
+   * Returns available timeRanges as a List by sorting a copy of unavailableTimeRanges by start time
+   * and adding each gap between each timeRange to the List which will be returned. The List that
+   * was passed in will not be modified.
    */
   private List<TimeRange> getAvailableTimeRanges(
       List<TimeRange> unavailableTimeRanges, long durationMinutes) {
@@ -144,38 +144,42 @@ public final class FindMeetingQuery {
       return Arrays.asList(TimeRange.WHOLE_DAY);
     }
 
-    Collections.sort(unavailableTimeRanges, TimeRange.ORDER_BY_START);
+    List<TimeRange> unavailableTimeRangesCopy = new ArrayList<>(unavailableTimeRanges);
+    Collections.sort(unavailableTimeRangesCopy, TimeRange.ORDER_BY_START);
+
     List<TimeRange> availableTimeRanges = new ArrayList<>();
-    int lastListIndex = unavailableTimeRanges.size() - 1;
+    int lastListIndex = unavailableTimeRangesCopy.size() - 1;
 
     // Check for available time starting at the beginning of the day.
-    if (unavailableTimeRanges.get(0).start() >= durationMinutes) {
+    if (unavailableTimeRangesCopy.get(0).start() >= durationMinutes) {
       availableTimeRanges.add(
           TimeRange.fromStartEnd(
               TimeRange.WHOLE_DAY.start(),
-              unavailableTimeRanges.get(0).start(),
+              unavailableTimeRangesCopy.get(0).start(),
               /* inclusive = */ false));
     }
 
     for (int i = 0; i < lastListIndex; i++) {
       if (enoughTimeBetween(
-          unavailableTimeRanges.get(i), unavailableTimeRanges.get(i + 1), durationMinutes)) {
+          unavailableTimeRangesCopy.get(i),
+          unavailableTimeRangesCopy.get(i + 1),
+          durationMinutes)) {
         availableTimeRanges.add(
             TimeRange.fromStartEnd(
-                unavailableTimeRanges.get(i).end(),
-                unavailableTimeRanges.get(i + 1).start(),
+                unavailableTimeRangesCopy.get(i).end(),
+                unavailableTimeRangesCopy.get(i + 1).start(),
                 /* inclusive = */ false));
       }
     }
 
     // Check for available time at the end of the day.
     int timeAfterLastMeeting =
-        TimeRange.WHOLE_DAY.end() - unavailableTimeRanges.get(lastListIndex).end();
+        TimeRange.WHOLE_DAY.end() - unavailableTimeRangesCopy.get(lastListIndex).end();
 
     if (timeAfterLastMeeting >= durationMinutes) {
       availableTimeRanges.add(
           TimeRange.fromStartEnd(
-              unavailableTimeRanges.get(lastListIndex).end(),
+              unavailableTimeRangesCopy.get(lastListIndex).end(),
               TimeRange.WHOLE_DAY.end(),
               /* inclusive = */ false));
     }
