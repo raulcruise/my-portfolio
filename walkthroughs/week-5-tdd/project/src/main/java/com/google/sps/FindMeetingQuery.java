@@ -70,8 +70,8 @@ public final class FindMeetingQuery {
 
     // Convert the Collection of attendeese into a hash set in order to make each check
     // for a certain attendee O(1).
-    Set<String> attendeeList = new HashSet<String>();
-    attendeeList.addAll(attendees);
+    Set<String> attendeeSet = new HashSet<String>();
+    attendeeSet.addAll(attendees);
 
     // If an event's attendee list contains a names of an attendee that needs to attend
     // (from Collection<String> attendees, then we add the event's TimeRange to a list.
@@ -80,7 +80,7 @@ public final class FindMeetingQuery {
           Collection<String> eventAttendees = event.getAttendees();
 
           for (String attendee : eventAttendees) {
-            if (!attendees.contains(attendee)) {
+            if (!attendeeSet.contains(attendee)) {
               continue;
             }
 
